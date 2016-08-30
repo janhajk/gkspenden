@@ -19,6 +19,7 @@ function _gkspenden_getresults($query='') {
     // exp: $queries['name'] = NULL
     $queries[$query[0]] = isset($query[1])?$query[1]:NULL;
   }
+  print_r($queries);
   // Clean Input
   $queries['name']    = _gkspenden_cleanString       ($queries['name']) ;
   //$queries['betrag']  = _gkspenden_cleanNumbers     ($queries['betrag']) ;
