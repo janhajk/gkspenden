@@ -42,7 +42,7 @@ function _gkspenden_getresults($query='') {
    print_r(preg_replace("/{|}/", "", $sql));
      //$queries['qTitle'].$queries['qDate'];
   //dsm(str_replace(array('{','}'),'',$sql));
-  $results = db_query(db_rewrite_sql($sql),$queries['title']);
+  $results = db_query(db_rewrite_sql($sql),$queries['name']);
   while ($r = db_fetch_object($results)) {
     $nodes[$r->nid] = $r->nid;
   }
