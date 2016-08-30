@@ -1,0 +1,101 @@
+#gkspenden_results {
+  width:100%;
+  min-height: 600px;
+}
+
+#gkspenden_export {
+  margin: -15px 0 -15px 0;
+  width:95%;
+  text-align:right;
+}
+
+#gkspenden_filters {
+  display:none; /* just for startup */
+}
+
+#gkspenden_filter_date {
+  width:90%;
+}
+
+#gkspenden_filter_box1 {
+  margin:10px;
+  float:left;
+  width:30%;
+}
+
+#gkspenden_filter_box1 label {
+  width: 220px;
+}
+
+#gkspenden_filter_box2 {
+  
+}
+
+.gkspenden_filter_terms {
+  float:left;
+}
+
+.gkspenden_filter_terms span {
+  font-style:italic;
+}
+
+.gkspenden_filter_terms_0 {
+  background-color: black;
+  color:white;
+}
+.gkspenden_filter_terms_1 {
+  background-color:#CCCCCC;
+  color:black;
+}
+
+
+/* Anzahl gefundene Spenden */
+#gkspenden_results_count {
+  margin: -15px 0 -15px 0;
+  font-style:italic;
+  font-weight: bold;
+  width:95%;
+  text-align: right;
+  
+}
+
+#gkspenden_view {
+  margin: -15px 0 -40px 0;
+  width:95%;
+  text-align: right;
+}
+
+#gkspenden_view img {
+  cursor:pointer;
+}
+
+#gkspenden_results table {
+  margin: 50px 0 0 0;
+  width: 95%;
+}
+
+#gkspenden_results table tbody tr {
+  background-color: #E8EDFF;
+  border-top: 1px solid transparent;
+}
+
+#gkspenden_results table tbody td {
+  border-top: 1px solid transparent;
+  border-bottom: 1px solid white;
+  color: #669;
+  padding: 0px 5px 0px 5px; 
+}
+
+/* Titel Zelle in Breite Beschränken */
+#gkspenden_results table tbody td:first-child {
+  max-width: 300px;
+}
+
+#gkspenden_results table tbody td:nth-child(5) {
+  max-width: 100px; 
+}
+
+#gkspenden_results table tbody tr:hover td {
+  background-color: #D0DAFD;
+  color: #339;
+}

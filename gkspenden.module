@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * implements hook_menu()
+ */
+function gkspenden_menu() {
+  $items = array();
+  // Hauptseite
+  $items['spendensuche'] = array(
+    'title'           => 'Spenden-Suche',
+    'description'     => 'Spenden suchen',
+    'page callback'   => '_gkspenden_page',
+    'page arguments'  => array(1),
+    'access arguments'=> array('access content'),
+    'type'            => MENU_SUGGESTED_ITEM,
+    'file'            => 'page.main.inc',
+  );
+  // AJAX Abfrage für Suchresultate
+  $items['spendensuche/results'] = array(
+    'page callback'   => '_gkspenden_results_json',
+    'page arguments'  => array(2,3),
+    'access arguments'=> array('access content'),
+    'type'            => MENU_CALLBACK,
+    'file'            => 'page.results.inc',
+  );
+  // XLS-Export Download Link
+  $items['spendensuche/export'] = array(
+    'page callback'   => '_gkspenden_export_csv',
+    'page arguments'  => array(2),
+    'access arguments'=> array('access content'),
+    'type'            => MENU_CALLBACK,
+    'file'            => 'export.csv.inc',
+  );
+  return $items;
+}

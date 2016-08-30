@@ -1,0 +1,6 @@
+;$Id$
+name = Gassenküche Modul
+description = Ergänzende Funktionen für Spendenverwaltung
+core = 6.x
+php = 5.2
+package = "Custom Modules"
