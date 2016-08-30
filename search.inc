@@ -36,7 +36,7 @@ function _gkspenden_getresults($query='') {
     WHERE
        n.type LIKE \'spende\' '.
       //'AND cd.field_papierkorb_value LIKE \'normal\' '.
-     $queries['qTitle']. ' LIMIT 0,100';
+     $queries['qName']. ' LIMIT 0,100';
    print_r($sql);
      //$queries['qTitle'].$queries['qDate'];
   //dsm(str_replace(array('{','}'),'',$sql));
