@@ -8,7 +8,7 @@ if(Drupal.jsEnabled) {
   $(document).ready(
     function() {
       //$('#gkspenden_results table').tablesorter({headers: {1:{sorter:'germandate'}}});
-      gkspenden_addDateFilter();
+      //gkspenden_addDateFilter();
 
       $('#gkspenden_filters').fadeIn(400);
       //$('#gkspenden_filter_group_select').attr("disabled", true);
@@ -82,7 +82,7 @@ function gkspenden_search() {
   $.getJSON('/spendensuche/results/'+query, function (data) {
     gkspendenNodes = data;                                      // Suchresultate in Globaler Variable speichern
     var results = gkspenden_themeResults(view,data);          // Resultate in HTML Formatieren
-    $('#gkspenden_results_count').html('Anzahl gefundene Dossiers: ' + results[0]);
+    $('#gkspenden_results_count').html('Anzahl gefundene Resultate: ' + results[0]);
     $('#gkspenden_results_body').empty();                // Suchresultate ausblenden und danach leeren
     $('#gkspenden_results table').trigger("reset");
     gkspenden_setHeader(view);                                  // Header der Tabelle aendern
@@ -146,6 +146,8 @@ function gkspenden_setHeader(view) {
 /*
  *
  */
+
+/*
 function gkspenden_addDateFilter() {
   //$('#gkspenden_filter_date').prepend();
   $('#gkspenden_filter_date_slider').slider({
@@ -169,7 +171,7 @@ function gkspenden_addDateFilter() {
     " - " +
     phpdate(Drupal.settings.gkspenden.projekt.maxdate));
 }
-
+*/
 
 
 /*
