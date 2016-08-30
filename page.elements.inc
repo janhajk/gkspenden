@@ -22,9 +22,9 @@ function _gkspenden_getFilters($query='') {
                   '<input id="'.$pre.'date_from" value="0" type="hidden" />'.
                   '<input id="'.$pre.'date_to"   value="0" type="hidden" />'.
                '</div>';
-  //$taxonomy  = _gkspenden_getTermDropdown(1).
-               //_gkspenden_getTermDropdown(2).
-               //_gkspenden_getTermDropdown(3);
+  $taxonomy  = _gkspenden_getTermDropdown(1).
+               _gkspenden_getTermDropdown(2).
+               _gkspenden_getTermDropdown(3);
   return       '<div id="'.$pre.'box1">'.
                    $fTitle.
                    $taxonomy.

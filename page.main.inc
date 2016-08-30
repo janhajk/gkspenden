@@ -8,8 +8,8 @@ function _gkspenden_page($query='') {
 
   $dsPath = drupal_get_path('module', 'gkspenden');
 
-  drupal_add_js ($dsPath.'/jquery.ui/js/jquery-ui-1.8.10.custom.min.js', 'core', 'footer');
-  drupal_add_css($dsPath.'/jquery.ui/css/ui-lightness/jquery-ui-1.8.7.custom.css', 'core');
+  drupal_add_js ($dsPath.'/jquery-ui-1.12.0/js/jquery-ui.min.js', 'core', 'footer');
+  drupal_add_css($dsPath.'/jquery-ui-1.12.0/jquery-ui.css', 'core');
   drupal_add_js ($dsPath.'/gkspenden.js' , 'module', 'footer');
   drupal_add_css($dsPath.'/gkspenden.css', 'module');
   drupal_add_js (_gkspenden_getJsSettings(), 'setting');
