@@ -64,11 +64,10 @@ function gkspenden_search_init(timeout) {
  */
 function gkspenden_getQuery() {
   var query = 'title='       + $('#gkspenden_filter_title').val();
-  query += ';group='         + $('#gkspenden_filter_group_select').val();
-  query += ';date='          + $("#gkspenden_filter_date_from").val()+','+$("#gkspenden_filter_date_to").val();
-  query += ';terms='         + $('#gkspenden_filter_fachgebiet_select').val();
-  query += ','               + $('#gkspenden_filter_dateityp_select').val();
-  query += ','               + $('#gkspenden_filter_projektgebiet_select').val();
+//  query += ';date='          + $("#gkspenden_filter_date_from").val()+','+$("#gkspenden_filter_date_to").val();
+//  query += ';terms='         + $('#gkspenden_filter_fachgebiet_select').val();
+//  query += ','               + $('#gkspenden_filter_dateityp_select').val();
+//  query += ','               + $('#gkspenden_filter_projektgebiet_select').val();
   return query;
 }
 
