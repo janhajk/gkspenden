@@ -19,7 +19,7 @@ function _gkspenden_getresults($query='') {
     // exp: $queries['name'] = NULL
     $queries[$query[0]] = isset($query[1])?$query[1]:NULL;
   }
-  print_r($queries);
+ // print_r($queries);
   // Clean Input
   $queries['name']    = _gkspenden_cleanString       ($queries['name']) ;
   //$queries['betrag']  = _gkspenden_cleanNumbers     ($queries['betrag']) ;
@@ -39,7 +39,7 @@ function _gkspenden_getresults($query='') {
        n.type LIKE \'spende\' '.
       //'AND cd.field_papierkorb_value LIKE \'normal\' '.
      $queries['qName']. ' LIMIT 0,100';
-   print_r(preg_replace("/{|}/", "", $sql));
+   //print_r(preg_replace("/{|}/", "", $sql));
      //$queries['qTitle'].$queries['qDate'];
   //dsm(str_replace(array('{','}'),'',$sql));
   $results = db_query(db_rewrite_sql($sql),$queries['name']);
@@ -47,7 +47,7 @@ function _gkspenden_getresults($query='') {
     $nodes[$r->nid] = $r->nid;
   }
   return $nodes;
-  print_r($nodes);
+  //print_r($nodes);
 }
 
 /**
