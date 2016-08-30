@@ -30,7 +30,7 @@ function _gkspenden_oldestDocument() {
   if ($oDate) return $oDate;
   $sql = "SELECT field_spende_datum_value FROM {content_type_spende} ORDER BY field_spende_datum_value ASC LIMIT 0,1";
   $result = db_query($sql);
-  $date1 = db_fetch_object($result)->field_spende_datum_value;
+  $date1 = strtotime(db_fetch_object($result)->field_spende_datum_value);
   $date1 = mktime(0,0,0,date('n',$date1),date('j',$date1),date('Y',$date1));
   $oDate = $date1; // write to static cache
   return $oDate;

@@ -16,28 +16,19 @@ function _gkspenden_getFilters($query='') {
                                     'exakte &Uuml;bereinstimmungen gefunden">'.
                  '</label>'.
                '</div>';
-  $group     = '<div class="gkspenden_filter_terms">'.
-                 '<label for="'.$pre.'group_select">nach Autorengruppe:'.
-                   '<select id="'.$pre.'group_select">'._gkspenden_getAuthorGroups().'</select>'.
-                 '</label>'.
-               '</div>';
   $date      = '<div id="'.$pre.'date" style="clear:both">nach Datum (Dokument, letzte &Auml;nderung):'.
                   '<div id="'.$pre.'date_slider"></div>'.
                   '<div id="'.$pre.'date_value">von: bis:</div>'.
                   '<input id="'.$pre.'date_from" value="0" type="hidden" />'.
                   '<input id="'.$pre.'date_to"   value="0" type="hidden" />'.
                '</div>';
-  $taxonomy  = _gkspenden_getTermDropdown(1).
-               _gkspenden_getTermDropdown(2).
-               _gkspenden_getTermDropdown(3);
+  //$taxonomy  = _gkspenden_getTermDropdown(1).
+               //_gkspenden_getTermDropdown(2).
+               //_gkspenden_getTermDropdown(3);
   return       '<div id="'.$pre.'box1">'.
                    $fTitle.
                    $taxonomy.
-                   $group.
                    $date.
-               '</div>'.
-               '<div id="'.$pre.'box2">'.
-                   $gmap.
                '</div>';
 }
 /**
@@ -71,7 +62,7 @@ function _gkspenden_getJsSettings() {
         'path'    => url(drupal_get_path('module', 'gkspenden')),
         // Informationen über das Projekt
         'projekt' => array(
-            //'mindate' => _gkspenden_oldestDocument(),// ältestes Dokument
+            'mindate' => _gkspenden_oldestDocument(),// ältestes Dokument
             'maxdate' => _gkspenden_midnight(),      // neustes Dokument
             'range'   => ((_gkspenden_midnight()-_gkspenden_oldestDocument())/86400), // Anzahl Tage zwischen ältestem und neustem Dokument
         ),
