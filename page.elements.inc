@@ -58,18 +58,8 @@ function _gkspenden_getTermDropdown($vid) {
               '</label>'.
             '</div>';
 }
-/**
- * Gibt alle OG-Gruppen als HTML-<option>'s zurück
- * @return string '<option value="">...</option><option...'
- */
-function _gkspenden_getAuthorGroups() {
-  $allgroups = og_all_groups_options();
-  $options = '<option value="0">-- alle --</option>';
-  foreach ($allgroups as $gid=>$groupname) {
-    $options .= '<option value="'.$gid.'">'.$groupname.'</option>';
-  }
-  return $options;
-}
+
+
 /**
  * Java-Script Einstellungen des Modules
  *
@@ -81,7 +71,7 @@ function _gkspenden_getJsSettings() {
         'path'    => url(drupal_get_path('module', 'gkspenden')),
         // Informationen über das Projekt
         'projekt' => array(
-            'mindate' => _gkspenden_oldestDocument(),// ältestes Dokument
+            //'mindate' => _gkspenden_oldestDocument(),// ältestes Dokument
             'maxdate' => _gkspenden_midnight(),      // neustes Dokument
             'range'   => ((_gkspenden_midnight()-_gkspenden_oldestDocument())/86400), // Anzahl Tage zwischen ältestem und neustem Dokument
         ),
