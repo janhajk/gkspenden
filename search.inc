@@ -35,15 +35,15 @@ function _gkspenden_getresults($query='') {
     WHERE
        n.type LIKE \'spende\' '.
       //'AND cd.field_papierkorb_value LIKE \'normal\' '.
-     $queries['qTitle'];
+     $queries['qTitle']. ' LIMIT 0,100';
      //$queries['qTitle'].$queries['qDate'];
   //dsm(str_replace(array('{','}'),'',$sql));
-  print_r($sql);
   $results = db_query(db_rewrite_sql($sql),$queries['title']);
   while ($r = db_fetch_object($results)) {
     $nodes[$r->nid] = $r->nid;
   }
   return $nodes;
+  print_r($nodes);
 }
 
 /**
