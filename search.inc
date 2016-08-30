@@ -21,12 +21,12 @@ function _gkspenden_getresults($query='') {
   }
   // Clean Input
   $queries['name']    = _gkspenden_cleanString       ($queries['name']) ;
-  $queries['betrag']  = _gkspenden_cleanNumbers     ($queries['betrag']) ;
-  $queries['datum']   = _gkspenden_cleanDatum      ($queries['datum'])  ;
-  $queries['ort']     = _gkspenden_cleanString        ($queries['ort'])  ;
+  //$queries['betrag']  = _gkspenden_cleanNumbers     ($queries['betrag']) ;
+  //$queries['datum']   = _gkspenden_cleanDatum      ($queries['datum'])  ;
+  //$queries['ort']     = _gkspenden_cleanString        ($queries['ort'])  ;
   // Create SQL Strings
   $queries['qName']  = _gkspenden_createQueryString($queries['name'], 'n.spender');
-  $queries['qDatum']   = _gkspenden_createQueryDatum($queries['datum']);
+  //$queries['qDatum']   = _gkspenden_createQueryDatum($queries['datum']);
   // Get nodes that match Title Filter Criteria
   $sql =
    'SELECT n.nid FROM {node} n
@@ -35,9 +35,10 @@ function _gkspenden_getresults($query='') {
     WHERE
        n.type LIKE \'spende\' '.
       //'AND cd.field_papierkorb_value LIKE \'normal\' '.
-     $queries['qTitle']; 
+     $queries['qTitle'];
      //$queries['qTitle'].$queries['qDate'];
   //dsm(str_replace(array('{','}'),'',$sql));
+  print_r($sql);
   $results = db_query(db_rewrite_sql($sql),$queries['title']);
   while ($r = db_fetch_object($results)) {
     $nodes[$r->nid] = $r->nid;
