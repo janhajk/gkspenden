@@ -2,7 +2,7 @@
 /**
  * Gibt ein JSON Objekt mit den gefilterten Resultate zurück
  */
-function _gkspenden_results_json($type, $query) {
+function _gkspenden_results_json($query) {
   include_once('search.inc');
   include_once('page.elements.inc');
   include_once('functions.inc');
@@ -19,13 +19,11 @@ function _gkspenden_results_json($type, $query) {
     $nodes[$node->changed.':'.$key] = array(
         'nid'       => $nid,
         'title'     => $node->title,
-        'autor'     => $node->name,
+//        'autor'     => $node->name,
         'changed'   => date('d.m.Y',$node->changed),
-        'date'      => date('d.m.Y',strtotime($node->field_dokumentendatum[0]['value'])),
+//        'date'      => date('d.m.Y',strtotime($node->field_dokumentendatum[0]['value'])),
         'uid'       => $node->uid,
-        'groups'    => _gkspenden_getGroupIcons($node->og_groups_both),
         'terms'     => implode(', ',$terms),
-        'filescount'=> count($node->field_dateien),
     );
   }
   krsort($nodes);

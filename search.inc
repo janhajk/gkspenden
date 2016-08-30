@@ -30,12 +30,13 @@ function _gkspenden_getresults($query='') {
   // Get nodes that match Title Filter Criteria
   $sql =
    'SELECT n.nid FROM {node} n
-    LEFT JOIN {content_type_dossier} cd
+    LEFT JOIN {content_type_spende} cd
     ON (n.vid = cd.vid)
     WHERE
        n.type LIKE \'spende\' '.
       //'AND cd.field_papierkorb_value LIKE \'normal\' '.
-      $queries['qTitle'].$queries['qDate'];
+     $queries['qTitle']; 
+     //$queries['qTitle'].$queries['qDate'];
   //dsm(str_replace(array('{','}'),'',$sql));
   $results = db_query(db_rewrite_sql($sql),$queries['title']);
   while ($r = db_fetch_object($results)) {

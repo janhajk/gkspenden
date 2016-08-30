@@ -18,7 +18,7 @@ function gkspenden_menu() {
   // AJAX Abfrage für Suchresultate
   $items['spendensuche/results'] = array(
     'page callback'   => '_gkspenden_results_json',
-    'page arguments'  => array(2,3),
+    'page arguments'  => array(2),
     'access arguments'=> array('access content'),
     'type'            => MENU_CALLBACK,
     'file'            => 'page.results.inc',
