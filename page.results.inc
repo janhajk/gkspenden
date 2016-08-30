@@ -3,6 +3,7 @@
  * Gibt ein JSON Objekt mit den gefilterten Resultate zurück
  */
 function _gkspenden_results_json($query) {
+   print_r($query);
   include_once('search.inc');
   include_once('page.elements.inc');
   include_once('functions.inc');
