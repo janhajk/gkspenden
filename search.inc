@@ -22,18 +22,19 @@ function _gkspenden_getresults($query='') {
   print_r($queries);
   // Clean Input
   $queries['name']    = _gkspenden_cleanString       ($queries['name']) ;
-   print_r($queries['name']);
   //$queries['betrag']  = _gkspenden_cleanNumbers     ($queries['betrag']) ;
   //$queries['datum']   = _gkspenden_cleanDatum      ($queries['datum'])  ;
   //$queries['ort']     = _gkspenden_cleanString        ($queries['ort'])  ;
   // Create SQL Strings
-  $queries['qName']  = _gkspenden_createQueryString($queries['name'], 'n.spender');
+  $queries['qName']  = _gkspenden_createQueryString($queries['name'], '{node}.title');
   //$queries['qDatum']   = _gkspenden_createQueryDatum($queries['datum']);
   // Get nodes that match Title Filter Criteria
   $sql =
    'SELECT n.nid FROM {node} n
     LEFT JOIN {content_type_spende} cd
     ON (n.vid = cd.vid)
+    LEFT JOIN {node}
+    ON (cd.field_spende_spender_nid = {node}.nid)
     WHERE
        n.type LIKE \'spende\' '.
       //'AND cd.field_papierkorb_value LIKE \'normal\' '.
