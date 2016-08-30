@@ -43,6 +43,7 @@ function _gkspenden_getresults($query='') {
     $nodes[$r->nid] = $r->nid;
   }
   return $nodes;
+  print_r($sql);
   print_r($nodes);
 }
 
