@@ -63,7 +63,7 @@ function gkspenden_search_init(timeout) {
  * Sammelt alle Teilbedingungen/Filter für die Query
  */
 function gkspenden_getQuery() {
-  var query = 'title='       + $('#gkspenden_filter_title').val();
+  var query = 'name='       + $('#gkspenden_filter_title').val();
 //  query += ';date='          + $("#gkspenden_filter_date_from").val()+','+$("#gkspenden_filter_date_to").val();
 //  query += ';terms='         + $('#gkspenden_filter_fachgebiet_select').val();
 //  query += ','               + $('#gkspenden_filter_dateityp_select').val();
