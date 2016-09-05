@@ -63,18 +63,25 @@ var table = function(){
 };
 
 
-var row = function(data){
+var row = function(data) {
    var tr = document.createElement('tr');
    var ftd = function(html) {
       var td = document.createElement('td');
-      td.innerHTML = html;
+      if(typeof html === 'object') {
+         td.appendchild(html);
+      } else {
+         td.innerHTML = html;
+      }
       return td;
    };
    tr.appendChild(ftd(formatNameBlock(data)));
    tr.appendChild(ftd(formatDateBlock(data['spendendatum'])));
-   tr.appendChild(ftd(data['betrag'].toLocaleString('de-CH', {style:'currency', currency: 'CHF'})));
+   tr.appendChild(ftd(data['betrag'].toLocaleString('de-CH', {
+      style: 'currency',
+      currency: 'CHF'
+   })));
    tr.appendChild(ftd(formatAdressBlock(data)));
-   tr.appendChild(ftd('Aktionen'));
+   tr.appendChild(ftd(iconEdit('Spende Bearbeiten')));
    return tr;
 };
 
@@ -161,6 +168,15 @@ function gkspenden_search() {
    };
    request.send();
 }
+
+var iconEdit = function(title) {
+   var img = document.createElement('img');
+   img.style.width = '20px';
+   img.style.height = '20px';
+   img.title = title;
+   img.src = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAB1AAAAdQHjwgdlAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAGxQTFRFAAAAAAAAAAAAAAAAAAAAAQEBAgICAwMDBAQEJCQkNjY2ODg4Ozs7Pz8/SEhITExMVFRUXV1deHh4e3t7hYWFl5eXmJiYmZmZmpqam5ubnJycnZ2dpKSkpaWlp6enqamps7OzyMjI+/v7////xIiG8wAAAAR0Uk5TAFTN+4wdYmEAAACASURBVHjabdFJEsIwDERRWZKZpzCEyUCC7n9HlIXdWvA3XfW2TZRYNCSc3KLkmXqJONrlNfdhkmhmb1ehYL15n4Uqwa429d00hB0UmG/VgPleDQgD5kc1YH5WA8ICrksz4HEozYA2FLeIot04nlbRhFj3fejsyJR0uQttHdPfO34WIBHwX4VNdwAAAABJRU5ErkJggg==";
+   return img;
+};
 
 /*
  * Themeing Funktion für Suchresultate
