@@ -8,6 +8,7 @@ var fQuery = {
    'name': ''
 };
 var tbody;
+var summe = 0;
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -123,14 +124,7 @@ function gkspenden_search_init(timeout) {
    //gkspenden_updateExport();
    return true;
 }
-/*
- * Sammelt alle Teilbedingungen/Filter für die Query
- */
 
-function gkspenden_getQuery() {
-   var query = 'name=' + fQuery.name;
-   return query;
-}
 /*
  * Suche ausführen und Resultate ausgeben
  */
@@ -144,9 +138,12 @@ function gkspenden_search() {
       if (request.status >= 200 && request.status < 400) {
          var data = JSON.parse(request.responseText);
          tbody.innerHTML = '';
+         summe = 0;
          for (var d in data) {
             tbody.appendChild(row(data[d]));
-         };
+            summe += parseInt(data.betrag, 10);
+         }
+         alert(summe);
          console.log(data);
       } else {
          // Error
@@ -158,24 +155,6 @@ function gkspenden_search() {
       // There was a connection error of some sort
    };
    request.send();
-
-   /*
-   $.ajax({
-      dataType: 'json',
-      url: '/spendensuche/results/',
-      data: fQuery,
-      success: function(data) {
-         gkspendenNodes = data; // Suchresultate in Globaler Variable speichern
-         var results = gkspenden_themeResults(view, data); // Resultate in HTML Formatieren
-         $('#gkspenden_results_count').html('Anzahl gefundene Resultate: ' + results[0]);
-         $('#gkspenden_results_body').empty(); // Suchresultate ausblenden und danach leeren
-         $('#gkspenden_results table').trigger("reset");
-         gkspenden_setHeader(view); // Header der Tabelle aendern
-         $('#gkspenden_results table tbody').html(results[1]);
-         $('#gkspenden_results_body').css('text-align', 'left').fadeIn(); // Resultate anzeigen
-         previews_init();
-      }
-   });*/
 }
 
 /*
