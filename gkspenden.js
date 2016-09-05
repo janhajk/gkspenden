@@ -143,7 +143,7 @@ function gkspenden_search() {
             tbody.appendChild(row(data[d]));
             summe += parseInt(data[d].betrag, 10);
          }
-            tbody.appendChild(row({spendendatum:'', betrag: summe.toLocaleString('de-CH', {style:'currency', currency: 'CHF'})}));
+            tbody.appendChild(row({vorname: 'TOTAL:', spendendatum:'', betrag: summe.toLocaleString('de-CH', {style:'currency', currency: 'CHF'})}));
          console.log(data);
       } else {
          // Error
