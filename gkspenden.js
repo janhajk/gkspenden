@@ -80,18 +80,18 @@ var row = function(data){
 var formatAdressBlock = function(data) {
    var strasse = [];
    var ort = [];
-   if (data.strasse !== '' || data.strasse !== null) strasse.push(data.strasse);
-   if (data.plz !== '' || data.plz !== null) ort.push(data.plz);
-   if (data.ort !== '' || data.ort !== null) ort.push(data.ort);
+   if (data.strasse !== '' && data.strasse !== null) strasse.push(data.strasse);
+   if (data.plz !== '' && data.plz !== null) ort.push(data.plz);
+   if (data.ort !== '' && data.ort !== null) ort.push(data.ort);
    return [strasse.join(' '), ort.join(' ')].join(', ');
 };
 
 var formatNameBlock = function(data) {
    var n = [];
-   if (data.vorname !== '' || data.vorname !== null) n.push(data.vorname);
-   if (data.nachname !== '' || data.nachname !== null) n.push(data.nachname);
-   if (data.firma !== '' || data.firma !== null) n.push(data.firma);
-   if (data.zusatz !== '' || data.zusatz !== null) n.push(data.zusatz);
+   if (data.vorname !== '' && data.vorname !== null) n.push(data.vorname);
+   if (data.nachname !== '' && data.nachname !== null) n.push(data.nachname);
+   if (data.firma !== '' && data.firma !== null) n.push(data.firma);
+   if (data.zusatz !== '' && data.zusatz !== null) n.push(data.zusatz);
    return n.join(' ');
 };
 
