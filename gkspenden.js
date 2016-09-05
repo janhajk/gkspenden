@@ -54,10 +54,10 @@ var table = function(){
    th.push(fth('Betrag'));
    th.push(fth('adresse'));
    for (var i in th) {
-      tr.appendchild(th[i]);
+      tr.appendChild(th[i]);
    }
    var td = document.createElement('td');
-   thead.apendChid(tr);
+   thead.apendChild(tr);
    t.appendChild(thead);
    t.appendChild(tbody);
    return t;
