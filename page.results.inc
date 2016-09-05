@@ -42,7 +42,7 @@ function _gkspenden_results_json($query) {
          'anredespez'   => $spender->field_profil_briefanredespez[0]['value'],
       );
    }
-   krsort($nodes);
+   //krsort($nodes);
    drupal_json($nodes);
 }
 
