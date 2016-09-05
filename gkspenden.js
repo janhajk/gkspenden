@@ -7,6 +7,7 @@ var pre = 'gk_spenden_'
 var fQuery = {
    'name': ''
 };
+var tbody;
 
 
 document.addEventListener('DOMContentLoaded', function() {
@@ -43,7 +44,8 @@ var table = function(){
    var columns = ['Spender', 'Spendendatum', 'Betrag', 'Adresse', 'Aktionen'];
    var t = document.createElement('table');
    var thead = document.createElement('thead');
-   var tbody = document.createElement('tbody');
+   tbody = document.createElement('tbody');
+   tbody.id = pre + 'results_body';
    var tr = document.createElement('tr');
    var fth = function(value) {
       var th = document.createElement('th');
@@ -53,12 +55,29 @@ var table = function(){
    for (var i in columns) {
       tr.appendChild(fth(columns[i]));
    }
-   var td = document.createElement('td');
    thead.appendChild(tr);
    t.appendChild(thead);
    t.appendChild(tbody);
    return t;
 };
+
+
+var row = function(data){
+   var tr = document.createElement('tr');
+   var ftd = function(html) {
+      var td = document.createElement('td');
+      td.innerHTML = html;
+      return td;
+   };
+   var td = ftd(data->vorname + ' ' + data->nachname);
+   tr.appendChild(td);
+   tr.appendChild(ftd(data->spendendatum));
+   tr.appendChild(ftd(data->betrag));
+   tr.appendChild(ftd(data->strasse));
+   tr.appendChild(ftd('Aktionen'));
+   return tr;
+};
+
 
 /*
  * Initiert die Suche
@@ -108,6 +127,10 @@ function gkspenden_search() {
    request.onload = function() {
       if (request.status >= 200 && request.status < 400) {
          var data = JSON.parse(request.responseText);
+         tbody.innerHTML = '';
+         for (var d in data) {
+            tbody.appendchild(row(data[d]));
+         };
          console.log(data);
       } else {
          // Error
