@@ -1,14 +1,4 @@
 <?php
-/**
- * Gibt alle Filter HTML-Formatiert zurück
- * @return string HTML-Code der Filter
- */
-function _gkspenden_getFilters($query='') {
-  $pre       = 'gk_spenden_filter_';
-  return       '<div id="'.$pre.'box1">'.
-               '</div>';
-}
-
 
 /**
  * Gibt ein Dropdown eines Vokabulares aus mit den
@@ -27,26 +17,6 @@ function _gkspenden_getTermDropdown($vid) {
                 '</select>'.
               '</label>'.
             '</div>';
-}
-
-
-/**
- * Java-Script Einstellungen des Modules
- *
- * @return array Javascript Settings von gkspenden
- */
-function _gkspenden_getJsSettings() {
-  return array(
-      'gkspenden'=>array(
-        'path'    => url(drupal_get_path('module', 'gkspenden')),
-        // Informationen über das Projekt
-        'projekt' => array(
-            'mindate' => _gkspenden_oldestDocument(),// ältestes Dokument
-            'maxdate' => _gkspenden_midnight(),      // neustes Dokument
-            'range'   => ((_gkspenden_midnight()-_gkspenden_oldestDocument())/86400), // Anzahl Tage zwischen ältestem und neustem Dokument
-        ),
-      ),
-  );
 }
 
 
