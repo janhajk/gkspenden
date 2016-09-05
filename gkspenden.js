@@ -70,7 +70,7 @@ var row = function(data) {
       if(typeof html === 'object') {
          td.appendChild(html);
       }
-      elseif(typeof html === 'undefined') {
+      else if(typeof html === 'undefined') {
          td.innerHTML = '';
       } else {
          td.innerHTML = html;
