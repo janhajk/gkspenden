@@ -93,8 +93,9 @@ function gkspenden_search() {
    request.onerror = function() {
       // There was a connection error of some sort
    };
-
    request.send();
+
+   /*
    $.ajax({
       dataType: 'json',
       url: '/spendensuche/results/',
@@ -110,21 +111,14 @@ function gkspenden_search() {
          $('#gkspenden_results_body').css('text-align', 'left').fadeIn(); // Resultate anzeigen
          previews_init();
       }
-   });
+   });*/
 }
-/*
- * aktualisiert bei jeder filter-änderung den Link des CSV-Export-Buttons
- */
 
-function gkspenden_updateExport() {
-   var query = gkspenden_getQuery();
-   $('#gkspenden_export a').attr('href', '/spendensuche/export/' + gkspenden_base64encode(query));
-}
 /*
  * Themeing Funktion für Suchresultate
  * wird gemäss der aktuellen VIew ausgeührt für Thumbnails oder Normal (Listenansicht)
  */
-
+/*
 function gkspenden_themeResults(view, data) {
    var rows = '';
    var count = 0;
@@ -139,15 +133,17 @@ function gkspenden_themeResults(view, data) {
       count++;
    }
    return new Array(count, rows);
-}
+}*/
+
+
 /*
  * setzt den Tabellenkopf für die Suchresultate gemäss der View (Normal oder Thumbnails)
  */
-
+/*
 function gkspenden_setHeader(view) {
    var header = (view === 'Thumbnails') ? '<tr><th>Titel</th></tr>' : '<tr><th>Titel</th><th>letzte &Auml;nderung</th><th>Dok-Datum</th><th>Autor</th><th>Dateien</th><th>Gruppen</th><th>Tags</th></tr>';
    $('#gkspenden_results_head').html(header);
-}
+}*/
 /*
  *
  */
