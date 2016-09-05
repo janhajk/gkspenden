@@ -37,6 +37,8 @@ function _gkspenden_page($query='') {
  * @return array Javascript Settings von gkspenden
  */
 function _gkspenden_getJsSettings() {
+  global $user;
+  $uid = $user->uid;
   return array(
       'gkspenden'=>array(
         'path'    => url(drupal_get_path('module', 'gkspenden')),
@@ -45,6 +47,7 @@ function _gkspenden_getJsSettings() {
             'mindate' => _gkspenden_oldestDocument(),// ältestes Dokument
             'maxdate' => _gkspenden_midnight(),      // neustes Dokument
             'range'   => ((_gkspenden_midnight()-_gkspenden_oldestDocument())/86400), // Anzahl Tage zwischen ältestem und neustem Dokument
+            'lastquery' = variable_get('gkspenden_page_spenden_laststate_'.$uid, '');
         ),
       ),
   );
