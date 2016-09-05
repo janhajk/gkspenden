@@ -69,6 +69,9 @@ var row = function(data) {
       var td = document.createElement('td');
       if(typeof html === 'object') {
          td.appendChild(html);
+      }
+      elseif(typeof html === 'undefined') {
+         td.innerHTML = '';
       } else {
          td.innerHTML = html;
       }
@@ -109,7 +112,7 @@ var formatDateBlock = function(datum) {
 };
 
 var formatEditBlock = function(data) {
-   if (data.nid === undefined) return null;
+   if (data.nid === undefined) return undefined;
    var icon = iconEdit('Spende Bearbeiten');
    var a = document.createElement('a');
    a.href = '/node/' + data.nid + '/edit';
