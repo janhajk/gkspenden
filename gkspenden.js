@@ -73,11 +73,18 @@ var row = function(data){
    tr.appendChild(td);
    tr.appendChild(ftd(data['spendendatum']));
    tr.appendChild(ftd(data['betrag']));
-   tr.appendChild(ftd(data['strasse']));
+   tr.appendChild(ftd(formatAdressBlock(data));
    tr.appendChild(ftd('Aktionen'));
    return tr;
 };
 
+var formatAdressBlock = function(data) {
+   var a = [];
+   if (data.strasse !== '') a.push(data.strasse);
+   if (data.plz !== '') a.push(data.plz);
+   if (data.ort !== '') a.push(data.ort);
+   return a.join(' ');
+};
 
 /*
  * Initiert die Suche
