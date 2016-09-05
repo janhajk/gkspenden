@@ -13,6 +13,7 @@ function _gkspenden_results_json($query) {
   foreach ($nids as $key=>$nid) {
     $terms = array();
     $node = node_load($nid);
+    dsm($node);
     foreach ($node->taxonomy as $term) {
       $terms[] = l($term->name,'taxonomy/term/' . $term->tid);
     }
