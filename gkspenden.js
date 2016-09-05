@@ -6,18 +6,17 @@ var pre = 'gk_spenden_'
 var fQuery = {
    'name': ''
 };
-if(Drupal.jsEnabled) {
-   $(document).ready(function() {
 
-      //Filter einblenden
-      var box1 = document.getElementById(pre + 'filter_box1');
-      box1.appendChild(fTitle());
 
-      // Suche initialisieren
-      gkspenden_search_init(0);
+document.addEventListener('DOMContentLoaded', function() {
+   //Filter einblenden
+   var box1 = document.getElementById(pre + 'filter_box1');
+   box1.appendChild(fTitle());
 
-   });
-}
+   // Suche initialisieren
+   gkspenden_search_init(0);
+});
+
 
 var fTitle = function(){
    var d = document.createElement('div');
@@ -56,7 +55,7 @@ function gkspenden_search_init(timeout) {
       gkspenden_search();
    } else {
       // Timeout setzten
-      gkspendenDelayId = window.setTimeout('gkspenden_search()', timeout);
+      gkspendenDelayId = window.setTimeout(gkspenden_search, timeout);
       // Export Link für XLS-Export aktualisieren
    }
    gkspenden_updateExport();
