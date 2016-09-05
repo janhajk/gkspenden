@@ -81,7 +81,7 @@ var row = function(data) {
       currency: 'CHF'
    })));
    tr.appendChild(ftd(formatAdressBlock(data)));
-   tr.appendChild(ftd(iconEdit('Spende Bearbeiten')));
+   tr.appendChild(ftd(formatEditBlock(data)));
    return tr;
 };
 
@@ -106,6 +106,14 @@ var formatNameBlock = function(data) {
 var formatDateBlock = function(datum) {
    var d = new Date(datum*1000);
    return ('0' + d.getDate()).substring(('0' + d.getDate()).length-2) + '.' + ('0' + d.getMonth()).substring(('0' + d.getMonth()).length-2) + '.' + d.getFullYear();
+};
+
+var formatEditBlock = function(data) {
+   var icon = iconEdit('Spende Bearbeiten');
+   var a = documet.createElement('a');
+   a.href = '/node/' + data.nid + '/edit';
+   a.appendChild(icon);
+   return a;
 };
 
 /*
