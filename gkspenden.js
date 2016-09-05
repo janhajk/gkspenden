@@ -71,7 +71,7 @@ var row = function(data){
       return td;
    };
    tr.appendChild(ftd(formatNameBlock(data)));
-   tr.appendChild(ftd(data['spendendatum']));
+   tr.appendChild(ftd(data['spendendatum']).substring(0,10));
    tr.appendChild(ftd(data['betrag'].toLocaleString('de-CH', {style:'currency', currency: 'CHF'})));
    tr.appendChild(ftd(formatAdressBlock(data)));
    tr.appendChild(ftd('Aktionen'));
