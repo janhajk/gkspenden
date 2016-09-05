@@ -57,7 +57,7 @@ var table = function(){
       tr.appendChild(th[i]);
    }
    var td = document.createElement('td');
-   thead.apendChild(tr);
+   thead.appendChild(tr);
    t.appendChild(thead);
    t.appendChild(tbody);
    return t;
