@@ -98,7 +98,7 @@ var formatNameBlock = function(data) {
 
 var formatDateBlock = function(datum) {
    var d = new Date(datum*1000);
-   return ('0' + d.getDate()).substring(d.getDate().length-2) + '.' + ('0' + d.getMonth()).substring(d.getMonth().length-2) + '.' + d.getFullYear();
+   return ('0' + d.getDate()).substring(('0' + d.getDate()).length-2) + '.' + ('0' + d.getMonth()).substring(('0' + d.getMonth()).length-2) + '.' + d.getFullYear();
 };
 
 /*
