@@ -7,6 +7,10 @@ function _gkspenden_results_json($query) {
    include_once('page.elements.inc');
    include_once('functions.inc');
 
+   global $user;
+   $uid = $user->uid;
+   variable_set('gkspenden_page_spenden_laststate_'.$uid, $query);
+
    $nodes = array();
    $nids = _gkspenden_getresults($query);
    foreach ($nids as $key=>$nid) {
