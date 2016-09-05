@@ -14,7 +14,8 @@ function _gkspenden_results_json($query) {
       $terms = array();
       $node = node_load($nid);
       $spender = node_load($node->field_spende_spender[0]->nid);
-      dsm($node->field_spende_spender[0]->nid);
+      dsm($node);
+      dsm($node->field_spende_spender)
       dsm($spender);
       $nodes[$node->changed.':'.$key] = array(
          'nid'       => $nid,
