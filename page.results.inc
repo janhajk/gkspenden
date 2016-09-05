@@ -16,7 +16,7 @@ function _gkspenden_results_json($query) {
       $nodes[substr($node->field_spende_datum[0]['value'],0,10).':'.$key] = array(
          'changed'      => date('d.m.Y',$node->changed),
          'created'      => date('d.m.Y',$node->created),
-         'spendendatum' => $node->field_spende_datum[0]['value'],
+         'spendendatum' => strtotime($node->field_spende_datum[0]['value']),
          'nid'          => $nid,
          'nid_spender'  => $spender->nid,
          'creator'      => $node->uid,

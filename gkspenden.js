@@ -71,7 +71,7 @@ var row = function(data){
       return td;
    };
    tr.appendChild(ftd(formatNameBlock(data)));
-   tr.appendChild(ftd(data['spendendatum']).substring(0,10));
+   tr.appendChild(ftd(formatDateBlock(data['spendendatum'])));
    tr.appendChild(ftd(data['betrag'].toLocaleString('de-CH', {style:'currency', currency: 'CHF'})));
    tr.appendChild(ftd(formatAdressBlock(data)));
    tr.appendChild(ftd('Aktionen'));
@@ -94,6 +94,11 @@ var formatNameBlock = function(data) {
    if (data.firma !== '' && data.firma !== null) n.push(data.firma);
    if (data.zusatz !== '' && data.zusatz !== null) n.push(data.zusatz);
    return n.join(' ');
+};
+
+var formatDateBlock = function(datum) {
+   datum = new Date(datum*1000);
+   return datum.toLocaleDateString();
 };
 
 /*
