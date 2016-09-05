@@ -8,7 +8,6 @@ function _gkspenden_results_json($query) {
    include_once('functions.inc');
 
    $nodes = array();
-   drupal_set_header('Content-Type: text/plain; charset: utf-8');
    $nids = _gkspenden_getresults($query);
    foreach ($nids as $key=>$nid) {
       $terms = array();
@@ -44,7 +43,7 @@ function _gkspenden_results_json($query) {
       );
    }
    krsort($nodes);
-   print drupal_to_js($nodes);
+   drupal_json($nodes);
 }
 
 
