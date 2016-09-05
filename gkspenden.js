@@ -109,6 +109,7 @@ var formatDateBlock = function(datum) {
 };
 
 var formatEditBlock = function(data) {
+   if (data.nid === undefined) return null;
    var icon = iconEdit('Spende Bearbeiten');
    var a = document.createElement('a');
    a.href = '/node/' + data.nid + '/edit';
