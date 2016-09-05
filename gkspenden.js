@@ -60,7 +60,7 @@ function gkspenden_search_init(timeout) {
       gkspendenDelayId = window.setTimeout(gkspenden_search, timeout);
       // Export Link für XLS-Export aktualisieren
    }
-   gkspenden_updateExport();
+   //gkspenden_updateExport();
    return true;
 }
 /*

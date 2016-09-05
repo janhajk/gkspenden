@@ -18,7 +18,7 @@ function _gkspenden_results_json($query) {
     }
     $nodes[$node->changed.':'.$key] = array(
         'nid'       => $nid,
-        'title'     => $node->title,
+        //'title'     => $node->title,
 //        'autor'     => $node->name,
         'changed'   => date('d.m.Y',$node->changed),
 //        'date'      => date('d.m.Y',strtotime($node->field_dokumentendatum[0]['value'])),
