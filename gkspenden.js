@@ -52,7 +52,7 @@ var table = function(){
    th.push(fth('Spender'));
    th.push(fth('Spendendatum'));
    th.push(fth('Betrag'));
-   th.push(fth('adresse'));
+   th.push(fth('Adresse'));
    for (var i in th) {
       tr.appendChild(th[i]);
    }
