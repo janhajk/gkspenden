@@ -141,7 +141,7 @@ function gkspenden_search() {
          summe = 0;
          for (var d in data) {
             tbody.appendChild(row(data[d]));
-            summe += parseInt(data.betrag, 10);
+            summe += parseInt(data[d].betrag, 10);
          }
          alert(summe);
          console.log(data);
