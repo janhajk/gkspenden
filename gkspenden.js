@@ -143,7 +143,7 @@ function gkspenden_search() {
             tbody.appendChild(row(data[d]));
             summe += parseInt(data[d].betrag, 10);
          }
-         alert(summe);
+            tbody.appendChild({spendendatum:'', betrag: summe});
          console.log(data);
       } else {
          // Error
