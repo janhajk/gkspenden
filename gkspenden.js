@@ -10,7 +10,8 @@ if(Drupal.jsEnabled) {
    $(document).ready(function() {
 
       //Filter einblenden
-      $('#gkspenden_filter_box1').append(fTitle());
+      var box1 = document.getElementById(pre + 'filter_box1');
+      box1.appendChild(fTitle());
 
       // Suche initialisieren
       gkspenden_search_init(0);
