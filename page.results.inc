@@ -15,12 +15,12 @@ function _gkspenden_results_json($query) {
       $node = node_load($nid);
       $spender = node_load($node->field_spende_spender[0]['nid']);
       $nodes[$node->changed.':'.$key] = array(
-         'nid'          => $nid,
          'changed'      => date('d.m.Y',$node->changed),
          'created'      => date('d.m.Y',$node->created),
+         'spendendatum' => date('d.m.Y',$node->spendendatum),
+         'nid'          => $nid,
          'creator'      => $node->uid,
-         'betrag'       => $node->field_spende_betrag,
-         'spendendatum' => $node->field_spende_datum,
+         'betrag'       => $node->field_spende_betrag[0]['value'] ,
          'vorname'      => $spender->field_profil_vorname[0]['value'],
          'nachname'     => $spender->field_profil_nachname[0]['value'],
          'firma'        => $spender->field_profil_firma[0]['value'],
