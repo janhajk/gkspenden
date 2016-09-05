@@ -117,7 +117,7 @@ function _gkspenden_results_json($query) {
    translate (String, 1 characters ) 0
    vid (String, 6 characters ) 103960
    revision_uid (String, 2 characters ) 11
-   title (String, 24 characters ) Renner-Warth Dr. Ulrich
+   title (String, 24 characters ) vorname nachname
    body (String, 0 characters )
    teaser (String, 0 characters )
    log (String, 0 characters )
@@ -128,10 +128,10 @@ function _gkspenden_results_json($query) {
    data (String, 72 characters ) a:1:{s:13:"form_build_id";s:37:"form-ef742e0e68...
    field_profil_vorname (Array, 1 element)
       0 (Array, 1 element)
-         value (String, 10 characters ) Dr. Ulrich
+         value (String, 10 characters ) Vorname
    field_profil_nachname (Array, 1 element)
       0 (Array, 1 element)
-         value (String, 12 characters ) Renner-Warth
+         value (String, 12 characters ) Nachname
    field_profil_firma (Array, 1 element)
       0 (Array, 1 element)
          value (NULL)
@@ -143,13 +143,13 @@ function _gkspenden_results_json($query) {
          value (String, 5 characters ) Herrn
    field_profil_strasse (Array, 1 element)
       0 (Array, 1 element)
-         value (String, 11 characters ) Grusegg 944
+         value (String, 11 characters ) Musterstrasse 1
    field_profil_plz (Array, 1 element)
       0 (Array, 1 element)
-         value (String, 4 characters ) 9428
+         value (String, 4 characters ) 1234
    field_profil_ort (Array, 1 element)
       0 (Array, 1 element)
-         value (String, 12 characters ) Walzenhausen
+         value (String, 12 characters ) Musterhausen
    field_profil_telp (Array, 1 element)
       0 (Array, 1 element)
          value (NULL)
@@ -189,7 +189,7 @@ function _gkspenden_results_json($query) {
          format (String, 1 characters ) 1
    field_profil_briefanredespez (Array, 1 element)
       0 (Array, 1 element)
-         value (String, 35 characters ) Sehr geehrter Herr Dr. Renner-Warth
+         value (String, 35 characters ) Sehr geehrter Herr Superman
    field_profile_adresse_id (Array, 1 element)
       0 (Array, 1 element)
          value (String, 4 characters ) 2752
