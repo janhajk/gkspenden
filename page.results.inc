@@ -20,7 +20,7 @@ function _gkspenden_results_json($query) {
          'nid'          => $nid,
          'nid_spender'  => $spender->nid,
          'creator'      => $node->uid,
-         'betrag'       => $node->field_spende_betrag[0]['value'] ,
+         'betrag'       => (float) $node->field_spende_betrag[0]['value'],
          'vorname'      => $spender->field_profil_vorname[0]['value'],
          'nachname'     => $spender->field_profil_nachname[0]['value'],
          'firma'        => $spender->field_profil_firma[0]['value'],

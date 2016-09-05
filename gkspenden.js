@@ -72,7 +72,7 @@ var row = function(data){
    };
    tr.appendChild(ftd(formatNameBlock(data)));
    tr.appendChild(ftd(data['spendendatum']));
-   tr.appendChild(ftd(data['betrag']));
+   tr.appendChild(ftd(data['betrag'].toLocaleString('de-CH', {style:'currency', currency: 'CHF'})));
    tr.appendChild(ftd(formatAdressBlock(data)));
    tr.appendChild(ftd('Aktionen'));
    return tr;
@@ -143,7 +143,7 @@ function gkspenden_search() {
             tbody.appendChild(row(data[d]));
             summe += parseInt(data[d].betrag, 10);
          }
-            tbody.appendChild(row({spendendatum:'', betrag: summe}));
+            tbody.appendChild(row({spendendatum:'', betrag: summe.toLocaleString('de-CH', {style:'currency', currency: 'CHF'})}));
          console.log(data);
       } else {
          // Error
