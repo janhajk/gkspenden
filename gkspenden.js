@@ -40,6 +40,7 @@ var fTitle = function(){
 };
 
 var table = function(){
+   var columns = ['Spender', 'Spendendatum', 'Betrag', 'Adresse', 'Aktionen'];
    var t = document.createElement('table');
    var thead = document.createElement('thead');
    var tbody = document.createElement('tbody');
@@ -49,13 +50,8 @@ var table = function(){
       th.innerHTML = value;
       return th;
    };
-   var th = [];
-   th.push(fth('Spender'));
-   th.push(fth('Spendendatum'));
-   th.push(fth('Betrag'));
-   th.push(fth('Adresse'));
-   for (var i in th) {
-      tr.appendChild(th[i]);
+   for (var i in columns) {
+      tr.appendChild(fth(columns[i]));
    }
    var td = document.createElement('td');
    thead.appendChild(tr);
