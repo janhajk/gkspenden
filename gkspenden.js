@@ -76,6 +76,25 @@ function gkspenden_getQuery() {
  */
 
 function gkspenden_search() {
+   var url = '/spendensuche/results/';
+   var request = new XMLHttpRequest();
+   request.open('GET', url + 'name=' + fQuery.name, true);
+
+   request.onload = function() {
+      if (request.status >= 200 && request.status < 400) {
+         var data = JSON.parse(request.responseText);
+         console.log(data);
+      } else {
+         // Error
+
+      }
+   };
+
+   request.onerror = function() {
+      // There was a connection error of some sort
+   };
+
+   request.send();
    $.ajax({
       dataType: 'json',
       url: '/spendensuche/results/',
