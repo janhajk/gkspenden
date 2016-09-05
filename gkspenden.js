@@ -68,7 +68,7 @@ var row = function(data) {
    var ftd = function(html) {
       var td = document.createElement('td');
       if(typeof html === 'object') {
-         td.appendchild(html);
+         td.appendChild(html);
       } else {
          td.innerHTML = html;
       }
