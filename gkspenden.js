@@ -15,6 +15,9 @@ document.addEventListener('DOMContentLoaded', function() {
 
    // Suche initialisieren
    gkspenden_search_init(0);
+
+   var results = document.getElementById('gkspenden_results');
+   results.appendChild(table());
 });
 
 
@@ -33,6 +36,31 @@ var fTitle = function(){
    d.appendChild(l);
    d.appendChild(i);
    return d;
+};
+
+var table = function(){
+   var t = document.createElement('table');
+   var thead = document.createElement('thead');
+   var tbody = document.createElement('tbody');
+   var tr = document.createElement('tr');
+   var fth = function(value) {
+      var th = document.createElement('th');
+      th.innerHTML = value;
+      return th;
+   };
+   var th = [];
+   th.push(fth('Spender'));
+   th.push(fth('Spendendatum'));
+   th.push(fth('Betrag'));
+   th.push(fth('adresse'));
+   for (var i in th) {
+      tr.appendchild(th->i);
+   }
+   var td = document.createElement('td');
+   thead.apendChid(tr);
+   t.appendChild(thead);
+   t.appendChild(tbody);
+   return t;
 };
 
 /*

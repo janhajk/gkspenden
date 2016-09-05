@@ -19,6 +19,7 @@ function _gkspenden_results_json($query) {
          'created'      => date('d.m.Y',$node->created),
          'spendendatum' => $node->field_spende_datum[0]['value'],
          'nid'          => $nid,
+         'nid_spender'  => $spender->nid;
          'creator'      => $node->uid,
          'betrag'       => $node->field_spende_betrag[0]['value'] ,
          'vorname'      => $spender->field_profil_vorname[0]['value'],
