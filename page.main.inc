@@ -47,7 +47,7 @@ function _gkspenden_getJsSettings() {
             'mindate' => _gkspenden_oldestDocument(),// ältestes Dokument
             'maxdate' => _gkspenden_midnight(),      // neustes Dokument
             'range'   => ((_gkspenden_midnight()-_gkspenden_oldestDocument())/86400), // Anzahl Tage zwischen ältestem und neustem Dokument
-            'lastquery' = variable_get('gkspenden_page_spenden_laststate_'.$uid, ''),
+            'lastquery' => variable_get('gkspenden_page_spenden_laststate_'.$uid, ''),
         ),
       ),
   );
