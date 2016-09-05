@@ -54,7 +54,7 @@ var table = function(){
    th.push(fth('Betrag'));
    th.push(fth('adresse'));
    for (var i in th) {
-      tr.appendchild(th->i);
+      tr.appendchild(th[i]);
    }
    var td = document.createElement('td');
    thead.apendChid(tr);
