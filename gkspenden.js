@@ -51,6 +51,8 @@ function gkspenden_search_init(timeout) {
       clearTimeout(gkspendenDelayId);
    }
    // wenn timeout = 0 dann soll er kein Timer setzten, sondern direkt Funktion aufrufen
+   // dies wird beim laden ausgelöst und hat zur Folge, dass die Suche wie gefiltert
+   // ausgeführt wird, bzw. beim ersten laden, alle Resultate angezeigt werden
    if(timeout == 0) {
       gkspenden_search();
    } else {
@@ -67,10 +69,6 @@ function gkspenden_search_init(timeout) {
 
 function gkspenden_getQuery() {
    var query = 'name=' + fQuery.name;
-   //  query += ';date='          + $("#gkspenden_filter_date_from").val()+','+$("#gkspenden_filter_date_to").val();
-   //  query += ';terms='         + $('#gkspenden_filter_fachgebiet_select').val();
-   //  query += ','               + $('#gkspenden_filter_dateityp_select').val();
-   //  query += ','               + $('#gkspenden_filter_projektgebiet_select').val();
    return query;
 }
 /*
@@ -78,20 +76,22 @@ function gkspenden_getQuery() {
  */
 
 function gkspenden_search() {
-   var query = gkspenden_getQuery();
-   // Fire AJAX-Search
-   $.getJSON('/spendensuche/results/' + query, function(data) {
-      gkspendenNodes = data; // Suchresultate in Globaler Variable speichern
-      var results = gkspenden_themeResults(view, data); // Resultate in HTML Formatieren
-      $('#gkspenden_results_count').html('Anzahl gefundene Resultate: ' + results[0]);
-      $('#gkspenden_results_body').empty(); // Suchresultate ausblenden und danach leeren
-      $('#gkspenden_results table').trigger("reset");
-      gkspenden_setHeader(view); // Header der Tabelle aendern
-      $('#gkspenden_results table tbody').html(results[1]);
-      $('#gkspenden_results_body').css('text-align', 'left').fadeIn(); // Resultate anzeigen
-      previews_init();
+   $.ajax({
+      dataType: 'json',
+      url: '/spendensuche/results/',
+      data: fQuery,
+      success: function(data) {
+         gkspendenNodes = data; // Suchresultate in Globaler Variable speichern
+         var results = gkspenden_themeResults(view, data); // Resultate in HTML Formatieren
+         $('#gkspenden_results_count').html('Anzahl gefundene Resultate: ' + results[0]);
+         $('#gkspenden_results_body').empty(); // Suchresultate ausblenden und danach leeren
+         $('#gkspenden_results table').trigger("reset");
+         gkspenden_setHeader(view); // Header der Tabelle aendern
+         $('#gkspenden_results table tbody').html(results[1]);
+         $('#gkspenden_results_body').css('text-align', 'left').fadeIn(); // Resultate anzeigen
+         previews_init();
+      }
    });
-   return true;
 }
 /*
  * aktualisiert bei jeder filter-änderung den Link des CSV-Export-Buttons
