@@ -73,7 +73,7 @@ var row = function(data){
    tr.appendChild(td);
    tr.appendChild(ftd(data['spendendatum']));
    tr.appendChild(ftd(data['betrag']));
-   tr.appendChild(ftd(formatAdressBlock(data));
+   tr.appendChild(ftd(formatAdressBlock(data)));
    tr.appendChild(ftd('Aktionen'));
    return tr;
 };
