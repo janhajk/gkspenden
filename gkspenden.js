@@ -110,7 +110,7 @@ var formatDateBlock = function(datum) {
 
 var formatEditBlock = function(data) {
    var icon = iconEdit('Spende Bearbeiten');
-   var a = documet.createElement('a');
+   var a = document.createElement('a');
    a.href = '/node/' + data.nid + '/edit';
    a.appendChild(icon);
    return a;
