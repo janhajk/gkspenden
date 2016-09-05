@@ -80,7 +80,7 @@ var row = function(data){
 var formatAdressBlock = function(data) {
    var strasse = [];
    var ort = [];
-   if (data.strasse !== '') stasse.push(data.strasse);
+   if (data.strasse !== '') strasse.push(data.strasse);
    if (data.plz !== '') ort.push(data.plz);
    if (data.ort !== '') ort.push(data.ort);
    return [strasse.join(' '), ort.join(' ')].join(', ');
