@@ -4,33 +4,12 @@
  * @return string HTML-Code der Filter
  */
 function _gkspenden_getFilters($query='') {
-  $pre       = 'gkspenden_filter_';
-  $fTitle    = '<div class="gkspenden_filter_terms">'.
-                 '<label>Filtern nach Titel:'.
-                   '<input type   = "text" '.
-                           'id    = "'.$pre.'title" '.
-                           'name  = "title" '.
-                           'value = "'.($query!=''?$query:'').'" '.
-                           'title = "Titel oder beliebiger Teil des Titels eingeben. '.
-                                    'Mehrere W&ouml;rter m&ouml;glich. Es werden nur '.
-                                    'exakte &Uuml;bereinstimmungen gefunden">'.
-                 '</label>'.
-               '</div>';
-  $date      = '<div id="'.$pre.'date" style="clear:both">nach Datum (Dokument, letzte &Auml;nderung):'.
-                  '<div id="'.$pre.'date_slider"></div>'.
-                  '<div id="'.$pre.'date_value">von: bis:</div>'.
-                  '<input id="'.$pre.'date_from" value="0" type="hidden" />'.
-                  '<input id="'.$pre.'date_to"   value="0" type="hidden" />'.
-               '</div>';
-  $taxonomy  = _gkspenden_getTermDropdown(1).
-               _gkspenden_getTermDropdown(2).
-               _gkspenden_getTermDropdown(3);
+  $pre       = 'gk_spenden_filter_';
   return       '<div id="'.$pre.'box1">'.
-                   $fTitle.
-                   $taxonomy.
-                   $date.
                '</div>';
 }
+
+
 /**
  * Gibt ein Dropdown eines Vokabulares aus mit den
  * einzelnen Termen als Optionen

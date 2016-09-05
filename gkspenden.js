@@ -3,10 +3,11 @@ var gkspendenDelayId = 0;
 var firsttime = true;
 var initSorter = true;
 var pre = 'gk_spenden_'
+var fQuery = {
+   'name': '';
+};
 if(Drupal.jsEnabled) {
    $(document).ready(function() {
-      //$('#gkspenden_results table').tablesorter({headers: {1:{sorter:'germandate'}}});
-      //gkspenden_addDateFilter();
 
       //Filter einblenden
       $('#gkspenden_filter_box1').append(fTitle());
@@ -14,14 +15,6 @@ if(Drupal.jsEnabled) {
       // Suche initialisieren
       gkspenden_search_init(0);
 
-      // Filtert liste wenn Text in Titel-Filter eingegeben wurde
-      $('#gkspenden_filter_title').keyup(function() {
-         gkspenden_search_init();
-      });
-      // Filtert Liste nach Taxonomy Select Change
-      $('#gkspenden_filter_projektgebiet_select,' + '#gkspenden_filter_fachgebiet_select,' + '#gkspenden_filter_dateityp_select,' + '#gkspenden_filter_group_select').change(function() {
-         gkspenden_search_init(0);
-      });
    });
 }
 
@@ -29,8 +22,9 @@ var fTitle = function(){
    var d = document.createElement('div');
    var i = document.createElement('input');
    i.id = pre + 'filter_title';
-   i.title = '';
+   i.title = 'Titel oder beliebiger Teil des Titels eingeben. Mehrere W&ouml;rter m&ouml;glich. Es werden nur exakte &Uuml;bereinstimmungen gefunden';
    i.addEventListener('keyup', function(){
+      fQuery.name = i.value;
       gkspenden_search_init();
    });
    var l = document.createElement('label');
@@ -72,7 +66,7 @@ function gkspenden_search_init(timeout) {
  */
 
 function gkspenden_getQuery() {
-   var query = 'name=' + $('#gkspenden_filter_title').val();
+   var query = 'name=' + fQuery.name;
    //  query += ';date='          + $("#gkspenden_filter_date_from").val()+','+$("#gkspenden_filter_date_to").val();
    //  query += ';terms='         + $('#gkspenden_filter_fachgebiet_select').val();
    //  query += ','               + $('#gkspenden_filter_dateityp_select').val();
