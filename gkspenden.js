@@ -69,8 +69,7 @@ var row = function(data){
       td.innerHTML = html;
       return td;
    };
-   var td = ftd(data['vorname'] + ' ' + data['nachname']);
-   tr.appendChild(td);
+   tr.appendChild(ftd(formatNameBlock(data)));
    tr.appendChild(ftd(data['spendendatum']));
    tr.appendChild(ftd(data['betrag']));
    tr.appendChild(ftd(formatAdressBlock(data)));
@@ -79,11 +78,21 @@ var row = function(data){
 };
 
 var formatAdressBlock = function(data) {
-   var a = [];
-   if (data.strasse !== '') a.push(data.strasse);
-   if (data.plz !== '') a.push(data.plz);
-   if (data.ort !== '') a.push(data.ort);
-   return a.join(' ');
+   var strasse = [];
+   var ort = [];
+   if (data.strasse !== '') stasse.push(data.strasse);
+   if (data.plz !== '') ort.push(data.plz);
+   if (data.ort !== '') ort.push(data.ort);
+   return [strasse.join(' '), ort.join(' ')].join(', ');
+};
+
+var formatNameBlock = function(data) {
+   var n = [];
+   if (data.vorname !== '') n.push(data.vorname);
+   if (data.nachname !== '') n.push(data.nachname);
+   if (data.firma !== '') n.push(data.firma);
+   if (data.zusatz !== '') n.push(data.zusatz);
+   return n.join(' ');
 };
 
 /*
