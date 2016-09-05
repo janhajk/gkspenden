@@ -9,7 +9,7 @@ if(Drupal.jsEnabled) {
       //gkspenden_addDateFilter();
 
       //Filter einblenden
-      $('#gkspenden_filter_box1').append(fTitle);
+      $('#gkspenden_filter_box1').append(fTitle());
 
       // Suche initialisieren
       gkspenden_search_init(0);
