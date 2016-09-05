@@ -4,7 +4,7 @@ var firsttime = true;
 var initSorter = true;
 var pre = 'gk_spenden_'
 var fQuery = {
-   'name': '';
+   'name': ''
 };
 if(Drupal.jsEnabled) {
    $(document).ready(function() {
