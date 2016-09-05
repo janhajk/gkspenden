@@ -69,11 +69,11 @@ var row = function(data){
       td.innerHTML = html;
       return td;
    };
-   var td = ftd(data->vorname + ' ' + data->nachname);
+   var td = ftd(data['vorname'] + ' ' + data['nachname']);
    tr.appendChild(td);
-   tr.appendChild(ftd(data->spendendatum));
-   tr.appendChild(ftd(data->betrag));
-   tr.appendChild(ftd(data->strasse));
+   tr.appendChild(ftd(data['spendendatum']);
+   tr.appendChild(ftd(data['betrag']);
+   tr.appendChild(ftd(data['strasse']));
    tr.appendChild(ftd('Aktionen'));
    return tr;
 };
