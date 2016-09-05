@@ -1,3 +1,4 @@
+(function() {
 // ID des Counters um Verzögerung für ajax abfragen bei Live-Suche zu erzeugen
 var gkspendenDelayId = 0;
 var firsttime = true;
@@ -246,3 +247,9 @@ function phpdate(timestamp) {
    var day = '0' + Zeit.getDate();
    return day.substr(day.length - 2, 2) + '.' + (Zeit.getMonth() + 1) + '.' + Zeit.getFullYear();
 }
+
+   
+
+
+
+})();
