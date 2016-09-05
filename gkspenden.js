@@ -129,7 +129,7 @@ function gkspenden_search() {
          var data = JSON.parse(request.responseText);
          tbody.innerHTML = '';
          for (var d in data) {
-            tbody.appendchild(row(data[d]));
+            tbody.appendChild(row(data[d]));
          };
          console.log(data);
       } else {
