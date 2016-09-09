@@ -5,7 +5,8 @@
    var initSorter = true;
    var pre = 'gk_spenden_'
    var fQuery = {
-      'name': ''
+      'name': '',
+      'adresse': ''
    };
    var tbody;
    var summe = 0;
@@ -13,6 +14,7 @@
       //Filter einblenden
       var box1 = document.getElementById(pre + 'filter_box1');
       box1.appendChild(fTitle());
+      box1.appendChild(fAdresse());
       // Suche initialisieren
       gkspenden_search_init(0);
       var results = document.getElementById('gkspenden_results');
@@ -30,8 +32,22 @@
       });
       var l = document.createElement('label');
       l.innerHTML = 'Filtern nach Name:';
-      l.
-      for = pre + 'filter_title';
+      d.appendChild(l);
+      d.appendChild(i);
+      return d;
+   };
+
+   var fAdresse = function() {
+      var d = document.createElement('div');
+      var i = document.createElement('input');
+      i.id = pre + 'filter_adresse';
+      i.title = 'Beliebiger Teil der Adresse eingeben. Mehrere W&ouml;rter m&ouml;glich. Es werden nur exakte &Uuml;bereinstimmungen gefunden';
+      i.addEventListener('keyup', function() {
+         fQuery.adresse = i.value;
+         gkspenden_search_init();
+      });
+      var l = document.createElement('label');
+      l.innerHTML = 'Filtern nach Adresse:';
       d.appendChild(l);
       d.appendChild(i);
       return d;
@@ -157,7 +173,7 @@
       var url = '/spendensuche/results/';
       var request = new XMLHttpRequest();
       //var query = gkspenden_base64encode('name=' + fQuery.name);
-      var query = 'name=' + fQuery.name;
+      var query = 'name=' + fQuery.name + ';' + 'adresse=' + fQuqery.adresse;
       request.open('GET', url + query, true);
       request.onload = function() {
          if(request.status >= 200 && request.status < 400) {
