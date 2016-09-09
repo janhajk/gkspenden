@@ -8,8 +8,8 @@
 
 function _gkspenden_getresults($query='') {
    print 'Query: '.print_r($query,1);
-   print 'Arg(1): '.arg(1);
-   print 'Arg(2): '.arg(2);
+   print 'Arg(1): '.print_r(arg(1),1);
+   print 'Arg(2): '.print_r(arg(2),1);;
    $nodes    = array();
    $queries  = array();
    $pQueries = explode(';',$query);
