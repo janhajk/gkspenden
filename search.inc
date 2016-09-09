@@ -7,47 +7,50 @@
 //   Strasse & Ort & PLZ
 
 function _gkspenden_getresults($query='') {
-  $nodes    = array();
-  $queries  = array();
-  $pQueries = explode(';',$query);
-  foreach ($pQueries as $query) {
-    $query  = explode('=',$query);
-    // exp: $query = 'name=Ein name'
-    // exp: $queries['name'] = 'Ein Name'
-    //
-    // exp: $query = 'name='
-    // exp: $queries['name'] = NULL
-    $queries[$query[0]] = isset($query[1])?$query[1]:NULL;
-  }
- // print_r($queries);
-  // Clean Input
-  $queries['name']    = _gkspenden_cleanString       ($queries['name']) ;
-  //$queries['betrag']  = _gkspenden_cleanNumbers     ($queries['betrag']) ;
-  //$queries['datum']   = _gkspenden_cleanDatum      ($queries['datum'])  ;
-  //$queries['ort']     = _gkspenden_cleanString        ($queries['ort'])  ;
-  // Create SQL Strings
-  $queries['qName']  = _gkspenden_createQueryString($queries['name'], '{node}.title');
-  //$queries['qDatum']   = _gkspenden_createQueryDatum($queries['datum']);
-  // Get nodes that match Title Filter Criteria
-  $sql =
-   'SELECT n.nid FROM {node} n
+   $nodes    = array();
+   $queries  = array();
+   $pQueries = explode(';',$query);
+   foreach ($pQueries as $query) {
+      $query  = explode('=',$query);
+      // exp: $query = 'name=Ein name'
+      // exp: $queries['name'] = 'Ein Name'
+      //
+      // exp: $query = 'name='
+      // exp: $queries['name'] = NULL
+      $queries[$query[0]] = isset($query[1])?$query[1]:NULL;
+   }
+   // print_r($queries);
+   // Clean Input
+   $queries['name']    = _gkspenden_cleanString       ($queries['name']);
+   $queries['adresse' ]= _gkspenden_cleanString       ($queries['name']);
+   //$queries['betrag']  = _gkspenden_cleanNumbers     ($queries['betrag']) ;
+   //$queries['datum']   = _gkspenden_cleanDatum      ($queries['datum'])  ;
+   //$queries['ort']     = _gkspenden_cleanString        ($queries['ort'])  ;
+   // Create SQL Strings
+   $queries['qName']     = _gkspenden_createQueryString($queries['name'], array('{node}.title'));
+   $queries['qAdresse']  = _gkspenden_createQueryString($queries['adresse'], array('p.field_profil_strasse_value', 'p.field_profil_ort_value', 'p.field_profil_plz_value'));
+   //$queries['qDatum']   = _gkspenden_createQueryDatum($queries['datum']);
+   // Get nodes that match Title Filter Criteria
+   $sql =
+      'SELECT n.nid FROM {node} n
     LEFT JOIN {content_type_spende} cd
     ON (n.vid = cd.vid)
     LEFT JOIN {node}
     ON (cd.field_spende_spender_nid = {node}.nid)
+    LEFT JOIN {content_type_profile} p
+    ON (p.vid = n.vid)
     WHERE
        n.type LIKE \'spende\' '.
-      //'AND cd.field_papierkorb_value LIKE \'normal\' '.
-     $queries['qName']. ' ORDER BY cd.field_spende_datum_value DESC, cd.field_spende_betrag_value DESC LIMIT 0,100';
-   //print_r(preg_replace("/{|}/", "", $sql));
-     //$queries['qTitle'].$queries['qDate'];
-  //dsm(str_replace(array('{','}'),'',$sql));
-  $results = db_query(db_rewrite_sql($sql),$queries['name']);
-  while ($r = db_fetch_object($results)) {
-    $nodes[$r->nid] = $r->nid;
-  }
-  return $nodes;
-  //print_r($nodes);
+      $queries['qName']. ' ORDER BY cd.field_spende_datum_value DESC, cd.field_spende_betrag_value DESC LIMIT 0,100';
+   print_r(preg_replace("/{|}/", "", $sql));
+   //$queries['qTitle'].$queries['qDate'];
+   dsm(str_replace(array('{','}'),'',$sql));
+   $results = db_query(db_rewrite_sql($sql),$queries['name']);
+   while ($r = db_fetch_object($results)) {
+      $nodes[$r->nid] = $r->nid;
+   }
+   return $nodes;
+   //print_r($nodes);
 }
 
 /**
@@ -83,15 +86,20 @@ function _gkspenden_cleanNumbers($numbers, $count=NULL){
 /**
  * Creates SQL Filter for Searchstring
  * @param array $title array('searchstring1', 'searchstrin2', ...)
- * @return string "AND n.title LIKE '%%%s%%' AND n.title LIKE '%%%s%%'" etc.
+ * @return string "AND ((col1 LIKE '%%%s1%%' OR col2 LIKE '%%%s1%%'") AND (col1 LIKE '%%%s2%%' OR col2 LIKE '%%%s2%%'")) etc.
  */
-function _gkspenden_createQueryString($string, $col, $logic='AND') {
-  if (!$string) return '';
-  $q = array();
-  foreach ($string as $s) {
-    $q[] = $col." LIKE '%%%s%%'";   // doppelte %% notwwendig da Drupal %xxx% als Platzhalter in db_rewrite_sql benutzt, und sql als wildcard
-  }
-  return ' AND ('.implode(' '.$logic.' ', $q).') ';
+function _gkspenden_createQueryString($string, $cols, $logic='AND') {
+   if (!$string) return '';
+   $q = array();
+   $sq = array();
+   foreach ($string as $s) {
+      foreach ($cols as $c) {
+         $sq[] = $c." LIKE '%%%s%%'";   // doppelte %% notwwendig da Drupal %xxx% als Platzhalter in db_rewrite_sql benutzt, und sql als wildcard
+      }
+      $q[] = '('.implode(' OR ', $sq).')';
+      $sq = array();
+   }
+   return ' AND ('.implode(' '.$logic.' ', $q).') ';
 }
 
 /**
