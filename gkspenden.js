@@ -156,7 +156,9 @@
    function gkspenden_search() {
       var url = '/spendensuche/results/';
       var request = new XMLHttpRequest();
-      request.open('GET', url + 'name=' + fQuery.name, true);
+      //var query = gkspenden_base64encode('name=' + fQuery.name);
+      var query = 'name=' + fQuery.name;
+      request.open('GET', url + query, true);
       request.onload = function() {
          if(request.status >= 200 && request.status < 400) {
             var data = JSON.parse(request.responseText);

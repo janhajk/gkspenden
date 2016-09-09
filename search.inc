@@ -8,8 +8,8 @@
 
 function _gkspenden_getresults($query='') {
    print 'Query: '.print_r($query,1)."\n\r";
-   print 'Arg(1): '.print_r(arg(1),1)."\n\r";
-   print 'Arg(2): '.print_r(arg(2),1)."\n\r";
+   //$query = base64_decode($query);
+   print 'Query decoded: '.print_r($query,1)."\n\r";
    $nodes    = array();
    $queries  = array();
    $pQueries = explode(';',$query);
@@ -30,21 +30,21 @@ function _gkspenden_getresults($query='') {
    //$queries['datum']   = _gkspenden_cleanDatum      ($queries['datum'])  ;
    //$queries['ort']     = _gkspenden_cleanString        ($queries['ort'])  ;
    // Create SQL Strings
-   $queries['qName']     = _gkspenden_createQueryString($queries['name'], array('{node}.title'));
+   $queries['qName']     = _gkspenden_createQueryString($queries['name'], array('spender.title'));
    $queries['qAdresse']  = _gkspenden_createQueryString($queries['adresse'], array('p.field_profil_strasse_value', 'p.field_profil_ort_value', 'p.field_profil_plz_value'));
    //$queries['qDatum']   = _gkspenden_createQueryDatum($queries['datum']);
    // Get nodes that match Title Filter Criteria
    $sql =
       'SELECT n.nid FROM {node} n
-    LEFT JOIN {content_type_spende} cd
-    ON (n.vid = cd.vid)
-    LEFT JOIN {node}
-    ON (cd.field_spende_spender_nid = {node}.nid)
-    LEFT JOIN {content_type_profile} p
-    ON (p.vid = n.vid)
-    WHERE
-       n.type LIKE \'spende\' '.
-      $queries['qName'].$queries['qAdresse']. ' ORDER BY cd.field_spende_datum_value DESC, cd.field_spende_betrag_value DESC LIMIT 0,100';
+         LEFT JOIN {content_type_spende} cd
+           ON (n.vid = cd.vid)
+         LEFT JOIN {node} spender
+           ON (cd.field_spende_spender_nid = spender.nid)
+         LEFT JOIN {content_type_profile} p
+           ON (p.vid = spender.vid)
+       WHERE
+         n.type LIKE \'spende\' '.
+         $queries['qName'].$queries['qAdresse']. ' ORDER BY cd.field_spende_datum_value DESC, cd.field_spende_betrag_value DESC LIMIT 0,100';
    print_r(preg_replace("/{|}/", "", $sql));
    //$queries['qTitle'].$queries['qDate'];
    dsm(str_replace(array('{','}'),'',$sql));
