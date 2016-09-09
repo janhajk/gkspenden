@@ -41,7 +41,7 @@ function _gkspenden_getresults($query='') {
     ON (p.vid = n.vid)
     WHERE
        n.type LIKE \'spende\' '.
-      $queries['qName']. ' ORDER BY cd.field_spende_datum_value DESC, cd.field_spende_betrag_value DESC LIMIT 0,100';
+      $queries['qName'].$queries['qAdresse']. ' ORDER BY cd.field_spende_datum_value DESC, cd.field_spende_betrag_value DESC LIMIT 0,100';
    print_r(preg_replace("/{|}/", "", $sql));
    //$queries['qTitle'].$queries['qDate'];
    dsm(str_replace(array('{','}'),'',$sql));
