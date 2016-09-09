@@ -173,7 +173,7 @@
       var url = '/spendensuche/results/';
       var request = new XMLHttpRequest();
       //var query = gkspenden_base64encode('name=' + fQuery.name);
-      var query = 'name=' + fQuery.name + ';' + 'adresse=' + fQuqery.adresse;
+      var query = 'name=' + fQuery.name + ';' + 'adresse=' + fQuery.adresse;
       request.open('GET', url + query, true);
       request.onload = function() {
          if(request.status >= 200 && request.status < 400) {
