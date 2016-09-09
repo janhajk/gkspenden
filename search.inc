@@ -21,8 +21,8 @@ function _gkspenden_getresults($query='') {
    }
    // print_r($queries);
    // Clean Input
-   $queries['name']    = _gkspenden_cleanString       ($queries['name']);
-   $queries['adresse' ]= _gkspenden_cleanString       ($queries['name']);
+   $queries['name']    = _gkspenden_cleanString ($queries['name']);
+   $queries['adresse' ]= _gkspenden_cleanString ($queries['adresse']);
    //$queries['betrag']  = _gkspenden_cleanNumbers     ($queries['betrag']) ;
    //$queries['datum']   = _gkspenden_cleanDatum      ($queries['datum'])  ;
    //$queries['ort']     = _gkspenden_cleanString        ($queries['ort'])  ;
