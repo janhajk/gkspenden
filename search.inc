@@ -44,12 +44,11 @@ function _gkspenden_getresults($query='') {
            ON (p.vid = spender.vid)
        WHERE
          n.type LIKE \'spende\' '.
-         $queries['qName'].$queries['qAdresse']. ' ORDER BY cd.field_spende_datum_value DESC, cd.field_spende_betrag_value DESC LIMIT 0,100';
+         $queries['qName'][0].$queries['qAdresse'][0]. ' ORDER BY cd.field_spende_datum_value DESC, cd.field_spende_betrag_value DESC LIMIT 0,100';
    print_r(preg_replace("/{|}/", "", $sql));
    //$queries['qTitle'].$queries['qDate'];
    dsm(str_replace(array('{','}'),'',$sql));
-   $results = db_query(db_rewrite_sql($sql),array_merge($queries['name'], $queries['adresse']));
-   dsm($results);
+   $results = db_query(db_rewrite_sql($sql), array_merge($queries['qName'][1], $queries['qAdresse'][1]));
    while ($r = db_fetch_object($results)) {
       $nodes[$r->nid] = $r->nid;
    }
@@ -93,17 +92,19 @@ function _gkspenden_cleanNumbers($numbers, $count=NULL){
  * @return string "AND ((col1 LIKE '%%%s1%%' OR col2 LIKE '%%%s1%%'") AND (col1 LIKE '%%%s2%%' OR col2 LIKE '%%%s2%%'")) etc.
  */
 function _gkspenden_createQueryString($string, $cols, $logic='AND') {
-   if (!$string) return '';
+   if (!$string) return array('',array());
+   $values = array();
    $q = array();
    $sq = array();
    foreach ($string as $s) {
       foreach ($cols as $c) {
          $sq[] = $c." LIKE '%%%s%%'";   // doppelte %% notwwendig da Drupal %xxx% als Platzhalter in db_rewrite_sql benutzt, und sql als wildcard
+         $values[] = $s;
       }
       $q[] = '('.implode(' OR ', $sq).')';
       $sq = array();
    }
-   return ' AND ('.implode(' '.$logic.' ', $q).') ';
+   return array(' AND ('.implode(' '.$logic.' ', $q).') ', $values);
 }
 
 /**
