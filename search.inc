@@ -7,9 +7,9 @@
 //   Strasse & Ort & PLZ
 
 function _gkspenden_getresults($query='') {
-   print 'Query: '.print_r($query,1).'\n\r';
-   print 'Arg(1): '.print_r(arg(1),1).'\n\r';
-   print 'Arg(2): '.print_r(arg(2),1).'\n\r';
+   print 'Query: '.print_r($query,1)."\n\r";
+   print 'Arg(1): '.print_r(arg(1),1)."\n\r";
+   print 'Arg(2): '.print_r(arg(2),1)."\n\r";
    $nodes    = array();
    $queries  = array();
    $pQueries = explode(';',$query);
