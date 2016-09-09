@@ -7,9 +7,9 @@
 //   Strasse & Ort & PLZ
 
 function _gkspenden_getresults($query='') {
-   print 'Query: '.print_r($query,1)."\n\r";
+   //print 'Query: '.print_r($query,1)."\n\r";
    //$query = base64_decode($query);
-   print 'Query decoded: '.print_r($query,1)."\n\r";
+   //print 'Query decoded: '.print_r($query,1)."\n\r";
    $nodes    = array();
    $queries  = array();
    $pQueries = explode(';',$query);
@@ -22,7 +22,7 @@ function _gkspenden_getresults($query='') {
       // exp: $queries['name'] = NULL
       $queries[$query[0]] = isset($query[1])?$query[1]:NULL;
    }
-   print_r($queries);
+   //print_r($queries);
    // Clean Input
    $queries['name']    = _gkspenden_cleanString ($queries['name']);
    $queries['adresse' ]= _gkspenden_cleanString ($queries['adresse']);
@@ -45,9 +45,9 @@ function _gkspenden_getresults($query='') {
        WHERE
          n.type LIKE \'spende\' '.
          $queries['qName'][0].$queries['qAdresse'][0]. ' ORDER BY cd.field_spende_datum_value DESC, cd.field_spende_betrag_value DESC LIMIT 0,100';
-   print_r(preg_replace("/{|}/", "", $sql));
+   //print_r(preg_replace("/{|}/", "", $sql));
    //$queries['qTitle'].$queries['qDate'];
-   dsm(str_replace(array('{','}'),'',$sql));
+   //dsm(str_replace(array('{','}'),'',$sql));
    $results = db_query(db_rewrite_sql($sql), array_merge($queries['qName'][1], $queries['qAdresse'][1]));
    while ($r = db_fetch_object($results)) {
       $nodes[$r->nid] = $r->nid;
