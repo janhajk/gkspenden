@@ -13,7 +13,7 @@
    document.addEventListener('DOMContentLoaded', function() {
       //Filter einblenden
       var box1 = document.getElementById(pre + 'filter_box1');
-      box1.className += ' form-inline';
+      box1.className = 'form-inline';
       box1.appendChild(fTitle());
       box1.appendChild(fAdresse());
       // Suche initialisieren
@@ -32,8 +32,10 @@
          fQuery.name = i.value;
          gkspenden_search_init();
       });
+      i.className = 'form-control';
       var l = document.createElement('label');
       l.innerHTML = 'Filtern nach Name:';
+      l.for = i.id;
       d.appendChild(l);
       d.appendChild(i);
       return d;
@@ -49,8 +51,10 @@
          fQuery.adresse = i.value;
          gkspenden_search_init();
       });
+      i.className = 'form-control';
       var l = document.createElement('label');
       l.innerHTML = 'Filtern nach Adresse:';
+      l.for = i.id;
       d.appendChild(l);
       d.appendChild(i);
       return d;
