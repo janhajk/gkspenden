@@ -55,14 +55,8 @@
   font-weight: bold;
   width:95%;
   text-align: right;
-  
 }
 
-#gkspenden_view {
-  margin: -15px 0 -40px 0;
-  width:95%;
-  text-align: right;
-}
 
 #gkspenden_view img {
   cursor:pointer;
@@ -90,9 +84,6 @@
   max-width: 300px;
 }
 
-#gkspenden_results table tbody td:nth-child(5) {
-  max-width: 100px; 
-}
 
 #gkspenden_results table tbody tr:hover td {
   background-color: #D0DAFD;

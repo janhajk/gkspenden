@@ -13,6 +13,7 @@
    document.addEventListener('DOMContentLoaded', function() {
       //Filter einblenden
       var box1 = document.getElementById(pre + 'filter_box1');
+      box1.className += ' form-inline';
       box1.appendChild(fTitle());
       box1.appendChild(fAdresse());
       // Suche initialisieren

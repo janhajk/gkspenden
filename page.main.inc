@@ -8,13 +8,12 @@ function _gkspenden_page($query='') {
 
   $dsPath = drupal_get_path('module', 'gkspenden');
 
-  //drupal_add_js ($dsPath.'/jquery-ui-1.8.10/ui/minified/jquery-ui.min.js', 'core', 'footer');
-  //drupal_add_css($dsPath.'/jquery-ui-1.8.10/themes/base/minified/jquery-ui.min.css', 'core');
-  //drupal_add_js ($dsPath.'/jquery-ui-1.12.0/jquery-ui.min.js', 'core', 'footer');
-  //drupal_add_css($dsPath.'/jquery-ui-1.12.0/jquery-ui.css', 'core');
-  drupal_add_js ($dsPath.'/gkspenden.js' , 'module', 'footer');
-  drupal_add_css($dsPath.'/gkspenden.css', 'module');
-  drupal_add_js (_gkspenden_getJsSettings(), 'setting');
+   drupal_add_js ('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js', 'core', 'footer');
+   drupal_add_css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css', 'core');
+   drupal_add_css('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css', 'core');
+   drupal_add_js ($dsPath.'/gkspenden.js' , 'module', 'footer');
+   drupal_add_css($dsPath.'/gkspenden.css', 'module');
+   drupal_add_js (_gkspenden_getJsSettings(), 'setting');
 
   return
     '<div id="gkspenden_export"><a href="javascript:"><img src="/'.$dsPath. '/csv.gif'.'" width="40" height="16" /></a></div>'.
