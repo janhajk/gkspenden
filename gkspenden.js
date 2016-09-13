@@ -63,6 +63,7 @@
    var table = function() {
       var columns = ['Spender', 'Spendendatum', 'Betrag', 'Adresse', 'Aktionen'];
       var t = document.createElement('table');
+      t.className = 'table';
       var thead = document.createElement('thead');
       tbody = document.createElement('tbody');
       tbody.id = pre + 'results_body';
@@ -78,6 +79,8 @@
       thead.appendChild(tr);
       t.appendChild(thead);
       t.appendChild(tbody);
+      var d = document.createElement('div');
+      d.className = 'table-responsive table-condensed table-hover table-bordered';
       return t;
    };
 
