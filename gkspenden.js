@@ -24,6 +24,7 @@
 
    var fTitle = function() {
       var d = document.createElement('div');
+      d.className = 'form-group';
       var i = document.createElement('input');
       i.id = pre + 'filter_title';
       i.title = 'Titel oder beliebiger Teil des Titels eingeben. Mehrere W&ouml;rter m&ouml;glich. Es werden nur exakte &Uuml;bereinstimmungen gefunden';
@@ -40,6 +41,7 @@
 
    var fAdresse = function() {
       var d = document.createElement('div');
+      d.className = 'form-group';
       var i = document.createElement('input');
       i.id = pre + 'filter_adresse';
       i.title = 'Beliebiger Teil der Adresse eingeben. Mehrere W&ouml;rter m&ouml;glich. Es werden nur exakte &Uuml;bereinstimmungen gefunden';
