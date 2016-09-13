@@ -9,14 +9,14 @@ function _gkspenden_page($query='') {
   $dsPath = drupal_get_path('module', 'gkspenden');
    drupal_add_js('//--><!]]></script><script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script><script type="text/javascript"><!--//--><![CDATA[//><!--',  'inline');
    drupal_add_js ('//--><!]]></script><script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script type="text/javascript"><!--//--><![CDATA[//><!--', 'inline', 'footer');
-   drupal_add_css('//--><!]]></link><link type="text/css" rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link><link type="text/css"><!--//--><![CDATA[//><!--', 'theme', 'all', 'false');
-   drupal_add_css('//--><!]]></link><link type="text/css" rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link><link type="text/css"><!--//--><![CDATA[//><!--', 'theme', 'all', 'false');
 
    drupal_add_js ($dsPath.'/gkspenden.js' , 'module', 'footer');
    drupal_add_css($dsPath.'/gkspenden.css', 'module');
    drupal_add_js (_gkspenden_getJsSettings(), 'setting');
 
   return
+    '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">'.
+    '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">'.
     '<div id="gkspenden_export"><a href="javascript:"><img src="/'.$dsPath. '/csv.gif'.'" width="40" height="16" /></a></div>'.
     '<div id="gkspenden_filters"><div id="'.$pre.'box1">'.
      '</div></div>'.
