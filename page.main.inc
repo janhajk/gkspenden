@@ -7,8 +7,8 @@ function _gkspenden_page($query='') {
   include_once('functions.inc');
 
   $dsPath = drupal_get_path('module', 'gkspenden');
-drupal_add_js('//--><!]]></script><script type="text/javascript" src="https://you.host.com/yourexternaljs.js"></script><script type="text/javascript"><!--//--><![CDATA[//><!--',  'inline');
-   //drupal_add_js ('//--><!]]></script><script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script type="text/javascript"><!--//--><![CDATA[//><!--', 'inline', 'footer');
+   drupal_add_js('//--><!]]></script><script type="text/javascript" src="http://code.jquery.com/jquery-3.1.0.min.js"></script><script type="text/javascript"><!--//--><![CDATA[//><!--',  'inline');
+   drupal_add_js ('//--><!]]></script><script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script><script type="text/javascript"><!--//--><![CDATA[//><!--', 'inline', 'footer');
    drupal_add_css('//--><!]]></link><link type="text/css" rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"></link><link type="text/css"><!--//--><![CDATA[//><!--', 'module');
    drupal_add_css('//--><!]]></link><link type="text/css" rel="stylesheet" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"></link><link type="text/css"><!--//--><![CDATA[//><!--', 'module');
 
