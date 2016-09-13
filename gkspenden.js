@@ -81,7 +81,8 @@
       t.appendChild(tbody);
       var d = document.createElement('div');
       d.className = 'table-responsive table-condensed table-hover table-bordered';
-      return t;
+      d.appendChild(t);
+      return d;
    };
 
    var row = function(data) {
