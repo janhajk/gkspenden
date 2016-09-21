@@ -6,7 +6,7 @@
 function gkspenden_menu() {
   $items = array();
   // Hauptseite
-  $items['spendensuche'] = array(
+  $items['spendenliste'] = array(
     'title'           => 'Spenden-Suche',
     'description'     => 'Spenden suchen',
     'page callback'   => '_gkspenden_page',
