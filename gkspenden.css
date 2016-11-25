@@ -32,6 +32,10 @@
 #gkspenden_view img {
   cursor:pointer;
 }
+
+#gk_spenden_filter_box1.form-group {
+   margin-left: 10px;
+}
 /*
 #gkspenden_results table {
   margin: 50px 0 0 0;

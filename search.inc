@@ -90,6 +90,7 @@ function _gkspenden_cleanNumbers($numbers, $count=NULL){
  * Creates SQL Filter for Searchstring
  * @param array $title array('searchstring1', 'searchstrin2', ...)
  * @return string "AND ((col1 LIKE '%%%s1%%' OR col2 LIKE '%%%s1%%'") AND (col1 LIKE '%%%s2%%' OR col2 LIKE '%%%s2%%'")) etc.
+ * Jeder searchstring muss in mindestens einem col vorkommen
  */
 function _gkspenden_createQueryString($string, $cols, $logic='AND') {
    if (!$string) return array('',array());
@@ -101,7 +102,7 @@ function _gkspenden_createQueryString($string, $cols, $logic='AND') {
          $sq[] = $c." LIKE '%%%s%%'";   // doppelte %% notwwendig da Drupal %xxx% als Platzhalter in db_rewrite_sql benutzt, und sql als wildcard
          $values[] = $s;
       }
-      $q[] = '('.implode(' OR ', $sq).')';
+      $q[] = '('.implode(' OR ', $sq).')'; // wenn nur ein Wert, dann wird kein OR geschrieben
       $sq = array();
    }
    return array(' AND ('.implode(' '.$logic.' ', $q).') ', $values);
