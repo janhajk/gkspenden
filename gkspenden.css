@@ -33,8 +33,11 @@
   cursor:pointer;
 }
 
-#gk_spenden_filter_box1.form-group {
+#gk_spenden_filter_box1 .form-group {
    margin-left: 10px;
+}
+#gk_spenden_filter_box1 .form-group label {
+   margin-right: 10px;
 }
 /*
 #gkspenden_results table {

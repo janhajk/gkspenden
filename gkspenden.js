@@ -127,7 +127,11 @@
       if(data.nachname !== '' && data.nachname !== null) n.push(data.nachname);
       if(data.firma !== '' && data.firma !== null) n.push(data.firma);
       if(data.zusatz !== '' && data.zusatz !== null) n.push(data.zusatz);
-      return n.join(' ');
+      var name = n.join(' ');
+      var a = document.createElement('a');
+      a.href = '/node/' + data.nid_spender;
+      a.text = name;
+      return a;
    };
 
    var formatDateBlock = function(datum) {
