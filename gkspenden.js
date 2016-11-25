@@ -239,7 +239,7 @@
       img.style.width = '20px';
       img.style.height = '20px';
       img.title = title;
-      img.src = 'data:image/png;base64,' + images.type;
+      img.src = 'data:image/png;base64,' + images[type];
       return img;
    };
    
