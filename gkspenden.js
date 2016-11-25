@@ -151,7 +151,7 @@
       div1.appendChild(a);
       icon = Icon('add', 'Spende Hinzufügen');
       a = document.createElement('a');
-      a.href = '/node/add';
+      a.href = '/node/add/spende';
       a.appendChild(icon);
       var div2 = document.createElement('div');
       div2.appendChild(a);
