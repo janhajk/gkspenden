@@ -156,6 +156,7 @@
       a.appendChild(icon);
       var div2 = document.createElement('div');
       div2.appendChild(a);
+      div2.style.clear = 'both';
       div.appendChild(div1).appendChild(div2);
       return div;
    };
