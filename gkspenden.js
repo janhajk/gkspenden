@@ -149,14 +149,13 @@
       a.appendChild(icon);
       var div1 = document.createElement('div');
       div1.appendChild(a);
-      div1.style.float = 'right';
       icon = Icon('add', 'Spende Hinzufügen');
       a = document.createElement('a');
       a.href = '/node/add';
       a.appendChild(icon);
       var div2 = document.createElement('div');
       div2.appendChild(a);
-      div2.style.clear = 'both';
+      div2.style.float = 'right';
       div.appendChild(div1).appendChild(div2);
       return div;
    };
