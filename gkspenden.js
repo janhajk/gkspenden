@@ -98,7 +98,7 @@
       }
       var tr = document.createElement('tr');
       var ftd = function(html, align) {
-         if(typeof align==="undefined" ){
+         if(typeof align==='undefined' ){
             align = 'left';
          }
          var td = document.createElement('td');
@@ -151,9 +151,15 @@
       return a;
    };
 
+   /*
+    * formatiert ein Datum
+    * @param string datum z.B. 147785000
+    */
    var formatDateBlock = function(datum) {
       var d = new Date(datum * 1000);
-      return('0' + d.getDate()).substring(('0' + d.getDate()).length - 2) + '.' + ('0' + d.getMonth()).substring(('0' + d.getMonth()).length - 2) + '.' + d.getFullYear();
+      var monate = ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
+      return monate[d.getMonth()] + ' ' + d.getFullYear();
+      //return('0' + d.getDate()).substring(('0' + d.getDate()).length - 2) + '.' + ('0' + d.getMonth()).substring(('0' + d.getMonth()).length - 2) + '.' + d.getFullYear();
    };
 
    var formatEditBlock = function(data) {
