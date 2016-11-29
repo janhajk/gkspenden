@@ -95,7 +95,7 @@
       var cols = {};
       for (var i in columns) {
          cols[columns[i]] = {};
-      };
+      }
       var tr = document.createElement('tr');
       var ftd = function(html, align) {
          if(typeof align==="undefined" ){
@@ -119,7 +119,10 @@
          currency: 'CHF'
       }), 'right');
       cols.Adresse = ftd(formatAdressBlock(data));
-      cols.Aktionen = ftd(formatEditBlock(data)));
+      cols.Aktionen = ftd(formatEditBlock(data));
+      for (var i in cols) {
+         tr.appendChild(cols[i]);
+      }
       return tr;
    };
 
