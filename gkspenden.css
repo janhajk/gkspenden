@@ -39,6 +39,10 @@
 #gk_spenden_filter_box1 .form-group label {
    margin-right: 10px;
 }
+
+#gkspenden_filters {
+   margin-top: 15px;
+}
 /*
 #gkspenden_results table {
   margin: 50px 0 0 0;

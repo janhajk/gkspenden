@@ -17,7 +17,7 @@ function _gkspenden_page($query='') {
   return
     '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">'.
     '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">'.
-    '<div id="gkspenden_export"><a href="javascript:"><img src="/'.$dsPath. '/csv.gif'.'" width="40" height="16" /></a></div>'.
+    '<!--<div id="gkspenden_export"><a href="javascript:"><img src="/'.$dsPath. '/csv.gif'.'" width="40" height="16" /></a></div>-->'.
     '<div id="gkspenden_filters"><div id="'.$pre.'box1">'.
      '</div></div>'.
     '<div id="gkspenden_results">'.

@@ -1,4 +1,8 @@
 (function() {
+   var lIcons = {
+      'add' : "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADrSURBVDiNzZUxqoNAEIa/iHewFhHBIkWw9RbexMLSE9hb6kmsLdKkUwun1DMksK94IizGhYQt8sMU+8/uV8zs7KKUAsiAO/AE1Ifx3M5mG4vsC8hZZGz0txuKolDLsmhRlqUJeHeBKyfyfR/P8w6eQVcHcE07PpTrWIQBYB144b+Y5HlOGIZaMk1T4jjWvHEc6bpO86Zpoqqqfa0AJSLqW4nI3unfr6F14H4H27YliiItmSQJQRBonojQ973mDcOgrU9Hqa7rQwOapjHO8+/X0AFeFnkvF3gAt3fZeZ5Z1/XgGfQA2w+s7S/gDy6N/oAaaH5VAAAAAElFTkSuQmCC",
+      'edit': "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAB1AAAAdQHjwgdlAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAGxQTFRFAAAAAAAAAAAAAAAAAAAAAQEBAgICAwMDBAQEJCQkNjY2ODg4Ozs7Pz8/SEhITExMVFRUXV1deHh4e3t7hYWFl5eXmJiYmZmZmpqam5ubnJycnZ2dpKSkpaWlp6enqamps7OzyMjI+/v7////xIiG8wAAAAR0Uk5TAFTN+4wdYmEAAACASURBVHjabdFJEsIwDERRWZKZpzCEyUCC7n9HlIXdWvA3XfW2TZRYNCSc3KLkmXqJONrlNfdhkmhmb1ehYL15n4Uqwa429d00hB0UmG/VgPleDQgD5kc1YH5WA8ICrksz4HEozYA2FLeIot04nlbRhFj3fejsyJR0uQttHdPfO34WIBHwX4VNdwAAAABJRU5ErkJggg=="
+   };
    // ID des Counters um Verzögerung für ajax abfragen bei Live-Suche zu erzeugen
    var gkspendenDelayId = 0;
    var firsttime = true;
@@ -27,7 +31,7 @@
       d.className = 'form-group';
       var i = document.createElement('input');
       i.id = pre + 'filter_title';
-      i.title = 'Titel oder beliebiger Teil des Titels eingeben. Mehrere W&ouml;rter m&ouml;glich. Es werden nur exakte &Uuml;bereinstimmungen gefunden';
+      i.title = 'Titel oder beliebiger Teil des Titels eingeben. Mehrere Wörter möglich. Es werden nur exakte Übereinstimmungen gefunden';
       i.addEventListener('keyup', function() {
          fQuery.name = i.value;
          gkspenden_search_init();
@@ -46,7 +50,7 @@
       d.className = 'form-group';
       var i = document.createElement('input');
       i.id = pre + 'filter_adresse';
-      i.title = 'Beliebiger Teil der Adresse eingeben. Mehrere W&ouml;rter m&ouml;glich. Es werden nur exakte &Uuml;bereinstimmungen gefunden';
+      i.title = 'Beliebiger Teil der Adresse eingeben. Mehrere Wörter möglich. Es werden nur exakte Übereinstimmungen gefunden';
       i.addEventListener('keyup', function() {
          fQuery.adresse = i.value;
          gkspenden_search_init();
@@ -87,7 +91,10 @@
 
    var row = function(data) {
       var tr = document.createElement('tr');
-      var ftd = function(html) {
+      var ftd = function(html, align) {
+         if(typeof align==="undefined" ){
+            align = 'left';
+         }
          var td = document.createElement('td');
          if(typeof html === 'object') {
             td.appendChild(html);
@@ -96,6 +103,7 @@
          } else {
             td.innerHTML = html;
          }
+         td.style.textAlign = align;
          return td;
       };
       tr.appendChild(ftd(formatNameBlock(data)));
@@ -103,7 +111,7 @@
       tr.appendChild(ftd(data['betrag'].toLocaleString('de-CH', {
          style: 'currency',
          currency: 'CHF'
-      })));
+      }), 'right'));
       tr.appendChild(ftd(formatAdressBlock(data)));
       tr.appendChild(ftd(formatEditBlock(data)));
       return tr;
@@ -231,19 +239,18 @@
    }
 
 
+   /*
+    * Erzeugt ein html-img mit Icon aus der Icon-Library
+    */
    var Icon = function(type, title) {
-      var images = {
-         'add' : "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADrSURBVDiNzZUxqoNAEIa/iHewFhHBIkWw9RbexMLSE9hb6kmsLdKkUwun1DMksK94IizGhYQt8sMU+8/uV8zs7KKUAsiAO/AE1Ifx3M5mG4vsC8hZZGz0txuKolDLsmhRlqUJeHeBKyfyfR/P8w6eQVcHcE07PpTrWIQBYB144b+Y5HlOGIZaMk1T4jjWvHEc6bpO86Zpoqqqfa0AJSLqW4nI3unfr6F14H4H27YliiItmSQJQRBonojQ973mDcOgrU9Hqa7rQwOapjHO8+/X0AFeFnkvF3gAt3fZeZ5Z1/XgGfQA2w+s7S/gDy6N/oAaaH5VAAAAAElFTkSuQmCC",
-         'edit': "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAB1AAAAdQHjwgdlAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAGxQTFRFAAAAAAAAAAAAAAAAAAAAAQEBAgICAwMDBAQEJCQkNjY2ODg4Ozs7Pz8/SEhITExMVFRUXV1deHh4e3t7hYWFl5eXmJiYmZmZmpqam5ubnJycnZ2dpKSkpaWlp6enqamps7OzyMjI+/v7////xIiG8wAAAAR0Uk5TAFTN+4wdYmEAAACASURBVHjabdFJEsIwDERRWZKZpzCEyUCC7n9HlIXdWvA3XfW2TZRYNCSc3KLkmXqJONrlNfdhkmhmb1ehYL15n4Uqwa429d00hB0UmG/VgPleDQgD5kc1YH5WA8ICrksz4HEozYA2FLeIot04nlbRhFj3fejsyJR0uQttHdPfO34WIBHwX4VNdwAAAABJRU5ErkJggg=="
-      };
       var img = document.createElement('img');
-      img.style.width = '20px';
+      img.style.width  = '20px';
       img.style.height = '20px';
       img.title = title;
-      img.src = 'data:image/png;base64,' + images[type];
+      img.src = 'data:image/png;base64,' + lIcons[type];
       return img;
    };
-   
+
 
 /*
 function gkspenden_addDateFilter() {
