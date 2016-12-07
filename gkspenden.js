@@ -150,20 +150,22 @@
       var div = document.createElement('div');
 
       if(data.nid === undefined) return undefined;
-      var icon = Icon('edit', 'Spende Bearbeiten');
       var a = document.createElement('a');
       a.href = '/node/' + data.nid + '/edit';
-      a.appendChild(icon);
-      var div1 = document.createElement('div');
-      div1.appendChild(a);
-      icon = Icon('add', 'Spende Hinzufügen');
+      var span = document.createElement('span');
+      span.class = 'glyphicon glyphicon-cog';
+      span.title = 'Spende bearbeiten';
+      a.appendChild(span);
+      div.appendChild(a);
+
       a = document.createElement('a');
       a.href = '/node/add/spende/?spenderid=' + data.nid_spender;
-      a.appendChild(icon);
-      var div2 = document.createElement('div');
-      div2.appendChild(a);
-      div2.style.float = 'right';
-      div.appendChild(div1).appendChild(div2);
+      var span = document.createElement('span');
+      span.class = 'glyphicon glyphicon-plus';
+      span.title = 'Spende hinzufügen';
+      a.appendChild(span);
+      div.appendChild(a);
+
       return div;
    };
 
