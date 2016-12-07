@@ -207,7 +207,7 @@
                tbody.appendChild(row(data[d]));
                summe += parseInt(data[d].betrag, 10);
             }
-            tbody.appendChild(row({
+            var total = row({
                vorname: 'TOTAL:',
                spendendatum: '',
                memo:null,
@@ -217,7 +217,9 @@
                   style: 'currency',
                   currency: 'CHF'
                })
-            }));
+            })
+            tbody.appendChild(total);
+            tbody.insertBefore(total, tbody.firstChild);
             if (debug) console.log(data);
          } else {
             // Error
