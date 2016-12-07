@@ -153,7 +153,7 @@
       var a = document.createElement('a');
       a.href = '/node/' + data.nid + '/edit';
       var span = document.createElement('span');
-      span.class = 'glyphicon glyphicon-cog';
+      span.className = 'glyphicon glyphicon-cog';
       span.title = 'Spende bearbeiten';
       a.appendChild(span);
       div.appendChild(a);
@@ -161,7 +161,7 @@
       a = document.createElement('a');
       a.href = '/node/add/spende/?spenderid=' + data.nid_spender;
       var span = document.createElement('span');
-      span.class = 'glyphicon glyphicon-plus';
+      span.className = 'glyphicon glyphicon-plus';
       span.title = 'Spende hinzufügen';
       a.appendChild(span);
       div.appendChild(a);
