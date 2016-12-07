@@ -1,16 +1,13 @@
 (function() {
-   var lIcons = {
-      'add' : "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAYAAACNiR0NAAAABHNCSVQICAgIfAhkiAAAAAlwSFlzAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAADrSURBVDiNzZUxqoNAEIa/iHewFhHBIkWw9RbexMLSE9hb6kmsLdKkUwun1DMksK94IizGhYQt8sMU+8/uV8zs7KKUAsiAO/AE1Ifx3M5mG4vsC8hZZGz0txuKolDLsmhRlqUJeHeBKyfyfR/P8w6eQVcHcE07PpTrWIQBYB144b+Y5HlOGIZaMk1T4jjWvHEc6bpO86Zpoqqqfa0AJSLqW4nI3unfr6F14H4H27YliiItmSQJQRBonojQ973mDcOgrU9Hqa7rQwOapjHO8+/X0AFeFnkvF3gAt3fZeZ5Z1/XgGfQA2w+s7S/gDy6N/oAaaH5VAAAAAElFTkSuQmCC",
-      'edit': "iVBORw0KGgoAAAANSUhEUgAAABQAAAAUCAMAAAC6V+0/AAAAA3NCSVQICAjb4U/gAAAACXBIWXMAAAB1AAAAdQHjwgdlAAAAGXRFWHRTb2Z0d2FyZQB3d3cuaW5rc2NhcGUub3Jnm+48GgAAAGxQTFRFAAAAAAAAAAAAAAAAAAAAAQEBAgICAwMDBAQEJCQkNjY2ODg4Ozs7Pz8/SEhITExMVFRUXV1deHh4e3t7hYWFl5eXmJiYmZmZmpqam5ubnJycnZ2dpKSkpaWlp6enqamps7OzyMjI+/v7////xIiG8wAAAAR0Uk5TAFTN+4wdYmEAAACASURBVHjabdFJEsIwDERRWZKZpzCEyUCC7n9HlIXdWvA3XfW2TZRYNCSc3KLkmXqJONrlNfdhkmhmb1ehYL15n4Uqwa429d00hB0UmG/VgPleDQgD5kc1YH5WA8ICrksz4HEozYA2FLeIot04nlbRhFj3fejsyJR0uQttHdPfO34WIBHwX4VNdwAAAABJRU5ErkJggg=="
-   };
-
+   var debug = false;
+   // Spalten ind er Reihenfolge der Darstellung
    var columns = ['Spendendatum', 'Spender', 'Betrag', 'Adresse', 'Aktionen'];
+
+   // beginnt mit Feb, da Drupal für Monat immer letzter Tag des Vormonates 00:00:00 nimmt, bsp Jan 2016 = 31.12.2015
+   var monate = [null, 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez', 'Jan'];
 
    // ID des Counters um Verzögerung für ajax abfragen bei Live-Suche zu erzeugen
    var gkspendenDelayId = 0;
-   var firsttime = true;
-   var initSorter = true;
-   var pre = 'gk_spenden_'
    var fQuery = {
       'Name': '',
       'Adresse': ''
@@ -19,7 +16,7 @@
    var summe = 0;
    document.addEventListener('DOMContentLoaded', function() {
       //Filter einblenden
-      var box1 = document.getElementById(pre + 'filter_box1');
+      var box1 = document.getElementById('gk_spenden_filter_box1');
       box1.className = 'form-inline';
       box1.appendChild(fText('Name'));
       box1.appendChild(fText('Adresse'));
@@ -29,32 +26,11 @@
       results.appendChild(table());
    });
 
-
-   var fText = function(name) {
-      var d = document.createElement('div');
-      d.className = 'form-group';
-      var i = document.createElement('input');
-      i.id = pre + 'filter_' + name;
-      i.title = name + ' oder beliebiger Teil von "' + name + '" eingeben. Mehrere Wörter möglich. Es werden nur exakte Übereinstimmungen gefunden';
-      i.addEventListener('keyup', function() {
-         fQuery.Name = i.value;
-         gkspenden_search_init();
-      });
-      i.className = 'form-control';
-      var l = document.createElement('label');
-      l.innerHTML = name + ':';
-      l.for = i.id;
-      d.appendChild(l);
-      d.appendChild(i);
-      return d;
-   };
-
    var table = function() {
       var t = document.createElement('table');
-      t.className = 'table table-condensed table-hover table-bordered';
+      t.className = 'table table-condensed table-hover table-bordered';  // bootstrap class
       var thead = document.createElement('thead');
       tbody = document.createElement('tbody');
-      tbody.id = pre + 'results_body';
       var tr = document.createElement('tr');
       var fth = function(value) {
          var th = document.createElement('th');
@@ -108,6 +84,25 @@
       return tr;
    };
 
+   var fText = function(name) {
+      var d = document.createElement('div');
+      d.className = 'form-group';  // bootstrap class
+      var i = document.createElement('input');
+      i.id = 'gkspenden_' + Math.random().toString(36).substring(7);
+      i.title = name + ' oder beliebiger Teil von "' + name + '" eingeben. Mehrere Wörter möglich. Es werden nur exakte Übereinstimmungen gefunden';
+      i.addEventListener('keyup', function() {
+         fQuery[name] = i.value;
+         gkspenden_search_init();
+      });
+      i.className = 'form-control'; // bootstrap class
+      var l = document.createElement('label');
+      l.innerHTML = name + ':';
+      l.for = i.id;
+      d.appendChild(l);
+      d.appendChild(i);
+      return d;
+   };
+
    /*
     * TODO: Leere Adresse gibt noch komma aus
     */
@@ -141,39 +136,29 @@
    var formatDateBlock = function(datum) {
       if (datum === '') return '';
       var d = new Date(datum * 1000);
-      var monate = ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez', 'Jan'];
       var year = d.getFullYear();
       var month = d.getMonth();
       return monate[month+1] + ' ' + (year+(month===11?1:0));
    };
 
+   /*
+    * Todo: edit spender icon > glyphicon-user
+    */
    var formatEditBlock = function(data) {
       var div = document.createElement('div');
-
       if(data.nid === undefined) return undefined;
-      var a = document.createElement('a');
-      a.href = '/node/' + data.nid + '/edit';
-      var span = document.createElement('span');
-      span.className = 'glyphicon glyphicon-cog';
-      span.title = 'Spende bearbeiten';
-      a.appendChild(span);
-      div.appendChild(a);
-
-      a = document.createElement('a');
-      a.href = '/node/add/spende/?spenderid=' + data.nid_spender;
-      var span = document.createElement('span');
-      span.className = 'glyphicon glyphicon-plus';
-      span.title = 'Spende hinzufügen';
-      span.style.marginLeft = '5px';
-      a.appendChild(span);
-      div.appendChild(a);
-
+      div.appendChild(bootstrapIcon('cog', 'Spende bearbeiten', '/node/' + data.nid + '/edit'));
+      var plus = bootstrapIcon('plus', 'Spende hinzufügen', '/node/add/spende/?spenderid=' + data.nid_spender);
+      plus.style.marginLeft = '5px';
+      div.appendChild(plus);
       return div;
    };
 
    var formatMemo = function(data) {
       if (data.memo === null) return '';
-      return '<span class="glyphicon glyphicon-pushpin" title="' + data.memo + '" style="margin-left:5px;"></span>'
+      var icon = bootstrapIcon('pushpin', data.memo);
+      icon.style.marginLeft = '5px';
+      return icon;
    };
 
    /*
@@ -184,7 +169,7 @@
     * wird erneut erst nach dem Ablauf des timeout's ausgeführt
     */
 
-   function gkspenden_search_init(timeout) {
+   var gkspenden_search_init = function(timeout) {
       // Default Wert, wenn nicht gesetzt
       timeout = typeof(timeout) != 'undefined' ? timeout : 1000;
       // Wenn Timer bereits läuft, dann reseten
@@ -197,20 +182,18 @@
       if(timeout == 0) {
          gkspenden_search();
       } else {
-         // Timeout setzten
+         // Timeout in Variable speichern
          gkspendenDelayId = window.setTimeout(gkspenden_search, timeout);
-         // Export Link für XLS-Export aktualisieren
       }
-      //gkspenden_updateExport();
       return true;
-   }
+   };
 
 
 
    /*
     * Suche ausführen und Resultate ausgeben
     */
-   function gkspenden_search() {
+   var gkspenden_search = function() {
       var url = '/spendensuche/results/';
       var request = new XMLHttpRequest();
       var query = 'name=' + fQuery.Name + ';' + 'adresse=' + fQuery.Adresse;
@@ -218,7 +201,7 @@
       request.onload = function() {
          if(request.status >= 200 && request.status < 400) {
             var data = JSON.parse(request.responseText);
-            tbody.innerHTML = '';
+            tbody.innerHTML = ''; // alte Datensätze aus Tabelle löschen
             summe = 0;
             for(var d in data) {
                tbody.appendChild(row(data[d]));
@@ -235,7 +218,7 @@
                   currency: 'CHF'
                })
             }));
-            //console.log(data);
+            if (debug) console.log(data);
          } else {
             // Error
          }
@@ -244,91 +227,23 @@
          // There was a connection error of some sort
       };
       request.send();
-   }
+   };
 
 
    /*
     * Erzeugt ein html-img mit Icon aus der Icon-Library
     */
-   var Icon = function(type, title) {
-      var img = document.createElement('img');
-      img.style.width  = '20px';
-      img.style.height = '20px';
-      img.title = title;
-      img.src = 'data:image/png;base64,' + lIcons[type];
-      return img;
+   var bootstrapIcon = function(name, title, link) {
+      var span = document.createElement('span');
+      span.className = 'glyphicon glyphicon-' + name;
+      span.title = title;
+      return span;
+      if (link!=='undefined') {
+         var a = document.createElement('a');
+         a.href = link;
+         a.appendChild(span)
+      }
+      return a;
    };
 
-
-/*
-function gkspenden_addDateFilter() {
-  //$('#gkspenden_filter_date').prepend();
-  $('#gkspenden_filter_date_slider').slider({
-    range:  true,
-    min:    0,
-    max:    Drupal.settings.gkspenden.projekt.range-1,
-    values: [0,Drupal.settings.gkspenden.projekt.range-1],
-    slide:  function( event, ui ) {
-        var from = ui.values[0]*60*60*24 + Drupal.settings.gkspenden.projekt.mindate;
-        var to   = ui.values[1]*60*60*24 + Drupal.settings.gkspenden.projekt.mindate;
-				$("#gkspenden_filter_date_value").html(phpdate(from) + " - " + phpdate(to));
-        $("#gkspenden_filter_date_from").val(from);
-        $("#gkspenden_filter_date_to").val(to);
-		},
-    change: function() {
-        gkspenden_search_init(0);
-    }
-  });
-  $("#gkspenden_filter_date_value").html(
-    phpdate(Drupal.settings.gkspenden.projekt.mindate) +
-    " - " +
-    phpdate(Drupal.settings.gkspenden.projekt.maxdate));
-}
-*/
-
-var param = function(o) {
-   
-};
-
-
-/*
- *
- *
- *
- * PHP Functions
- *
- *
- *
- *
- */
-
-
-
-/*
- * base64 encoder function
- */
-
-   function gkspenden_base64encode(inp) {
-      var key = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";
-      var chr1, chr2, chr3, enc3, enc4, i = 0,
-         out = "";
-      while(i < inp.length) {
-         chr1 = inp.charCodeAt(i++);
-         if(chr1 > 127) chr1 = 88;
-         chr2 = inp.charCodeAt(i++);
-         if(chr2 > 127) chr2 = 88;
-         chr3 = inp.charCodeAt(i++);
-         if(chr3 > 127) chr3 = 88;
-         if(isNaN(chr3)) {
-            enc4 = 64;
-            chr3 = 0;
-         } else enc4 = chr3 & 63
-         if(isNaN(chr2)) {
-            enc3 = 64;
-            chr2 = 0;
-         } else enc3 = ((chr2 << 2) | (chr3 >> 6)) & 63
-         out += key.charAt((chr1 >> 2) & 63) + key.charAt(((chr1 << 4) | (chr2 >> 4)) & 63) + key.charAt(enc3) + key.charAt(enc4);
-      }
-      return encodeURIComponent(out);
-   }
 })();
