@@ -71,7 +71,7 @@
          return td;
       };
       cols.Spender = ftd(formatNameBlock(data));
-      cols.Spendendatum = ftd(formatDateBlock(data['spendendatum']) + formatMemo(data));
+      cols.Spendendatum = ftd(formatDateBlock(data['spendendatum']) + formatMemo(data).outerHTML);
       cols.Betrag = ftd(data['betrag'].toLocaleString('de-CH', {
          style: 'currency',
          currency: 'CHF'
