@@ -163,6 +163,7 @@
       var span = document.createElement('span');
       span.className = 'glyphicon glyphicon-plus';
       span.title = 'Spende hinzufügen';
+      span.style.marginLeft = '5px';
       a.appendChild(span);
       div.appendChild(a);
 
