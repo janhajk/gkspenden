@@ -155,7 +155,7 @@
    };
 
    var formatMemo = function(data) {
-      if (data.memo === null) return '';
+      if (data.memo === null) return document.createElement('span');
       var icon = bootstrapIcon('pushpin', data.memo);
       icon.style.marginLeft = '5px';
       return icon;
