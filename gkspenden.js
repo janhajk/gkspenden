@@ -95,7 +95,7 @@
          return td;
       };
       cols.Spender = ftd(formatNameBlock(data));
-      cols.Spendendatum = ftd(formatDateBlock(data['spendendatum']) + ((data.memo===null)?'':'<span class="glyphicon glyphicon-exclamation-sign"></span>'));
+      cols.Spendendatum = ftd(formatDateBlock(data['spendendatum']) + formatMemo(data));
       cols.Betrag = ftd(data['betrag'].toLocaleString('de-CH', {
          style: 'currency',
          currency: 'CHF'
@@ -163,6 +163,11 @@
       div2.style.float = 'right';
       div.appendChild(div1).appendChild(div2);
       return div;
+   };
+
+   var formatMemo = function(data) {
+      if (data.memo === null) return '';
+      return '<span class="glyphicon glyphicon-exclamation-sign" title="' + data.memo + '"></span>'
    };
 
 
