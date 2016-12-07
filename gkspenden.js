@@ -12,8 +12,8 @@
    var initSorter = true;
    var pre = 'gk_spenden_'
    var fQuery = {
-      'name': '',
-      'adresse': ''
+      'Name': '',
+      'Adresse': ''
    };
    var tbody;
    var summe = 0;
@@ -21,46 +21,28 @@
       //Filter einblenden
       var box1 = document.getElementById(pre + 'filter_box1');
       box1.className = 'form-inline';
-      box1.appendChild(fTitle());
-      box1.appendChild(fAdresse());
+      box1.appendChild(fText('Name'));
+      box1.appendChild(fText('Adresse'));
       // Suche initialisieren
       gkspenden_search_init(0);
       var results = document.getElementById('gkspenden_results');
       results.appendChild(table());
    });
 
-   var fTitle = function() {
+
+   var fText = function(name) {
       var d = document.createElement('div');
       d.className = 'form-group';
       var i = document.createElement('input');
-      i.id = pre + 'filter_title';
-      i.title = 'Titel oder beliebiger Teil des Titels eingeben. Mehrere Wörter möglich. Es werden nur exakte Übereinstimmungen gefunden';
+      i.id = pre + 'filter_' + name;
+      i.title = name + ' oder beliebiger Teil von "' + name + '" eingeben. Mehrere Wörter möglich. Es werden nur exakte Übereinstimmungen gefunden';
       i.addEventListener('keyup', function() {
          fQuery.name = i.value;
          gkspenden_search_init();
       });
       i.className = 'form-control';
       var l = document.createElement('label');
-      l.innerHTML = 'Name:';
-      l.for = i.id;
-      d.appendChild(l);
-      d.appendChild(i);
-      return d;
-   };
-
-   var fAdresse = function() {
-      var d = document.createElement('div');
-      d.className = 'form-group';
-      var i = document.createElement('input');
-      i.id = pre + 'filter_adresse';
-      i.title = 'Beliebiger Teil der Adresse eingeben. Mehrere Wörter möglich. Es werden nur exakte Übereinstimmungen gefunden';
-      i.addEventListener('keyup', function() {
-         fQuery.adresse = i.value;
-         gkspenden_search_init();
-      });
-      i.className = 'form-control';
-      var l = document.createElement('label');
-      l.innerHTML = 'Adresse:';
+      l.innerHTML = name + ':';
       l.for = i.id;
       d.appendChild(l);
       d.appendChild(i);
@@ -174,7 +156,7 @@
       div1.appendChild(a);
       icon = Icon('add', 'Spende Hinzufügen');
       a = document.createElement('a');
-      a.href = '/node/add/spende';
+      a.href = '/node/add/spende/?spenderid=' + data.nid_spender;
       a.appendChild(icon);
       var div2 = document.createElement('div');
       div2.appendChild(a);
@@ -222,8 +204,7 @@
    function gkspenden_search() {
       var url = '/spendensuche/results/';
       var request = new XMLHttpRequest();
-      //var query = gkspenden_base64encode('name=' + fQuery.name);
-      var query = 'name=' + fQuery.name + ';' + 'adresse=' + fQuery.adresse;
+      var query = 'name=' + fQuery.Name + ';' + 'adresse=' + fQuery.Adresse;
       request.open('GET', url + query, true);
       request.onload = function() {
          if(request.status >= 200 && request.status < 400) {
@@ -293,6 +274,11 @@ function gkspenden_addDateFilter() {
 }
 */
 
+var param = function(o) {
+   
+};
+
+
 /*
  *
  *
@@ -302,7 +288,7 @@ function gkspenden_addDateFilter() {
  *
  *
  *
- * /
+ */
 
 
 
