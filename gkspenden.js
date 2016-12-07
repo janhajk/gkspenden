@@ -140,7 +140,7 @@
    var formatDateBlock = function(datum) {
       var d = new Date(datum * 1000);
       var monate = ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'];
-      return monate[d.getMonth()] + ' ' + d.getFullYear();
+      return monate[d.getMonth()+1] + ' ' + d.getFullYear();
       //return('0' + d.getDate()).substring(('0' + d.getDate()).length - 2) + '.' + ('0' + d.getMonth()).substring(('0' + d.getMonth()).length - 2) + '.' + d.getFullYear();
    };
 
