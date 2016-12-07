@@ -217,7 +217,7 @@
                   style: 'currency',
                   currency: 'CHF'
                })
-            })
+            });
             tbody.appendChild(total);
             tbody.insertBefore(total, tbody.firstChild);
             if (debug) console.log(data);
