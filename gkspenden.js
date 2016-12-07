@@ -169,7 +169,7 @@
 
    var formatMemo = function(data) {
       if (data.memo === null) return '';
-      return '<span class="glyphicon glyphicon-exclamation-sign" title="' + data.memo + '" style="margin-left:30px;"></span>'
+      return '<span class="glyphicon glyphicon-exclamation-sign" title="' + data.memo + '" style="margin-left:5px;"></span>'
    };
 
 
