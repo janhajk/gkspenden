@@ -112,6 +112,7 @@
     * TODO: Leere Adresse gibt noch komma aus
     */
    var formatAdressBlock = function(data) {
+      if (data.strasse===null && data.ort===null) return '';
       var strasse = [];
       var ort = [];
       if(data.strasse !== '' && data.strasse !== null) strasse.push(data.strasse);
@@ -227,6 +228,8 @@
                vorname: 'TOTAL:',
                spendendatum: '',
                memo:null,
+               strasse: null,
+               ort: null,
                betrag: summe.toLocaleString('de-CH', {
                   style: 'currency',
                   currency: 'CHF'
