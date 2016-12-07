@@ -141,7 +141,9 @@
       if (datum === '') return '';
       var d = new Date(datum * 1000);
       var monate = ['Jan', 'Feb', 'Mrz', 'Apr', 'Mai', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez', 'Jan'];
-      return monate[d.getMonth()+1] + ' ' + d.getFullYear();
+      var year = d.getFullYear();
+      var month = d.getMonth();
+      return monate[month+1] + ' ' + (year+(month===11?1:0));
    };
 
    var formatEditBlock = function(data) {
