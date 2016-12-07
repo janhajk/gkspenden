@@ -237,7 +237,7 @@
       var span = document.createElement('span');
       span.className = 'glyphicon glyphicon-' + name;
       span.title = title;
-      if (link!=='undefined') {
+      if (typeof link!=='undefined') {
          var a = document.createElement('a');
          a.href = link;
          a.appendChild(span)
