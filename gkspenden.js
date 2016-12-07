@@ -95,7 +95,7 @@
          return td;
       };
       cols.Spender = ftd(formatNameBlock(data));
-      cols.Spendendatum = ftd(formatDateBlock(data['spendendatum']));
+      cols.Spendendatum = ftd(formatDateBlock(data['spendendatum']) + ((data.memo===NULL)?'':'<span class="glyphicon glyphicon-exclamation-sign"></span>'));
       cols.Betrag = ftd(data['betrag'].toLocaleString('de-CH', {
          style: 'currency',
          currency: 'CHF'
@@ -194,7 +194,6 @@
       //gkspenden_updateExport();
       return true;
    }
-
 
 
 
