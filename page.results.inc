@@ -42,7 +42,7 @@ function _gkspenden_results_json($query) {
          'eintritt'     => $spender->field_profil_eintritt[0]['value'],
          'verdankung'   => $spender->field_profil_verdankung[0]['value'],
          'imjhrbericht' => $spender->field_profil_imjahresbericht[0]['value'],
-         'memo'         => $spender->field_profil_neni[0]['value'],
+         'memo'         => $node->field_spende_memo[0]['value'],
          'anredespez'   => $spender->field_profil_briefanredespez[0]['value'],
       );
    }
