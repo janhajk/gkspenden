@@ -37,7 +37,7 @@
       i.id = pre + 'filter_' + name;
       i.title = name + ' oder beliebiger Teil von "' + name + '" eingeben. Mehrere Wörter möglich. Es werden nur exakte Übereinstimmungen gefunden';
       i.addEventListener('keyup', function() {
-         fQuery.name = i.value;
+         fQuery.Name = i.value;
          gkspenden_search_init();
       });
       i.className = 'form-control';
