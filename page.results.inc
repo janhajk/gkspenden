@@ -37,7 +37,7 @@ function _gkspenden_results_json($query) {
          'telg'         => $spender->field_profil_telg[0]['value'],
          'handy'        => $spender->field_profil_handy[0]['value'],
          'faxg'         => $spender->field_profil_faxg[0]['value'],
-         'mail'         => $spender->field_profil_mail[0]['value'],
+         'mail'         => $spender->field_profil_mail_email[0]['value'],
          'geburtstag'   => $spender->field_profil_geburtstag[0]['value'],
          'eintritt'     => $spender->field_profil_eintritt[0]['value'],
          'verdankung'   => $spender->field_profil_verdankung[0]['value'],
