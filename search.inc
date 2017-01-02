@@ -52,8 +52,26 @@ function _gkspenden_getresults($query='') {
    while ($r = db_fetch_object($results)) {
       $nodes[$r->nid] = $r->nid;
    }
+
+   // Namen ohne Spender (damit neu erfasste Namen auch in der Liste erscheinen)
+   $sql = 'SELECT DISTINCT n.nid FROM content_type_spende spende
+              RIGHT JOIN node spender ON spender.nid = spende.field_spende_spender_nid
+              LEFT JOIN content_type_profile p ON spender.nid = p.nid
+           WHERE spender.type LIKE \'profile\' AND spende.field_spende_betrag_value IS NULL'.
+           $queries['qName'][0].$queries['qAdresse'][0];
+   $results = db_query(db_rewrite_sql($sql), array_merge($queries['qName'][1], $queries['qAdresse'][1]));
+   while ($r = db_fetch_object($results)) {
+      $nodes[$r->nid] = $r->nid;
+   }
    return $nodes;
    //print_r($nodes);
+}
+
+function _gkspenden_getNamesWithoutSpende(qName, qAdresse) {
+   $sql = 'SELECT DISTINCT n.nid FROM content_type_spende spende
+              RIGHT JOIN node n ON n.nid = spende.field_spende_spender_nid
+           WHERE n.type LIKE \'profile\' AND spende.field_spende_betrag_value IS NULL'.
+              $queries['qName'][0].$queries['qAdresse'][0];
 }
 
 /**
