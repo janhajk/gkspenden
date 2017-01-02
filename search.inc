@@ -67,12 +67,6 @@ function _gkspenden_getresults($query='') {
    //print_r($nodes);
 }
 
-function _gkspenden_getNamesWithoutSpende(qName, qAdresse) {
-   $sql = 'SELECT DISTINCT n.nid FROM content_type_spende spende
-              RIGHT JOIN node n ON n.nid = spende.field_spende_spender_nid
-           WHERE n.type LIKE \'profile\' AND spende.field_spende_betrag_value IS NULL'.
-              $queries['qName'][0].$queries['qAdresse'][0];
-}
 
 /**
  * Cleans SearchString
