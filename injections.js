@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
             klausel = 'Sehr geehrte Damen und Herren';
          }
          var fAnrede = document.getElementById('edit-field-profil-briefanredespez-0-value');
-         if (fAnrede==='') fAnrede.value = klausel;
+         if (fAnrede.value==='') fAnrede.value = klausel;
       };
    })();
 });
