@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", function() {
          else {
             klausel = anreden.default;
          }
-         klausel = klausel.replace(/%Nachname/g, Nachname);
+         klausel = klausel.replace(/\%Nachname/g, Nachname);
          var fAnrede = document.getElementById('edit-field-profil-briefanredespez-0-value');
          if (fAnrede.value==='') fAnrede.value = klausel;
       };
