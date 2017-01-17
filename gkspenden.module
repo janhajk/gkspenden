@@ -40,8 +40,7 @@ function gkspenden_menu() {
 */
 function gkspenden_preprocess_page(&$variables) {
    //if (isset($variables['node'])) {
-      //if ($variables['node']->type == 'CONTENT_TYPE_NAME') {
-      dsm($variables);
+      if ($variables['title'] == 'Create Profil') {
       $path = drupal_get_path('module', 'gkspenden');
       drupal_add_js($path.'/injections.js', 'module', 'header');
       $variables['scripts'] = drupal_get_js();
