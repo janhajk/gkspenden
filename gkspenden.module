@@ -39,10 +39,9 @@ function gkspenden_menu() {
 * Implementation of hook_preprocess_hook().
 */
 function gkspenden_preprocess_page(&$variables) {
-   //if (isset($variables['node'])) {
-      if ($variables['title'] == 'Create Profil') {
+   if ($variables['title'] == 'Create Profil') {
       $path = drupal_get_path('module', 'gkspenden');
       drupal_add_js($path.'/injections.js', 'module', 'header');
       $variables['scripts'] = drupal_get_js();
-   //}
+   }
 }
