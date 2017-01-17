@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function() {
          else {
             klausel = 'Sehr geehrte Damen und Herren';
          }
-         var fAnrede = doucment.getElementById('edit-field-profil-briefanredespez-0-value');
+         var fAnrede = document.getElementById('edit-field-profil-briefanredespez-0-value');
          if (fAnrede==='') fAnrede = klausel;
       };
    })();
