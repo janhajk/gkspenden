@@ -33,3 +33,15 @@ function gkspenden_menu() {
   );
   return $items;
 }
+
+
+/**
+* Implementation of hook_preprocess_hook().
+*/
+function gkspenden_preprocess_page(&$variables, $arg = 'my_page', $delta=0) {
+   //if (isset($variables['node']) && (arg(2) === NULL)) {
+   //if ($variables['node']->type == 'CONTENT_TYPE_NAME') {
+   dsm($variables);
+   $path = drupal_get_path('module', 'gkspenden');
+   drupal_add_js($path.'/injections.js', 'module', 'header');
+}
