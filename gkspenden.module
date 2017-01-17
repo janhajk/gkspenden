@@ -42,7 +42,7 @@ function gkspenden_preprocess_page(&$variables) {
    //if (isset($variables['node']) && (arg(2) === NULL)) {
    //if ($variables['node']->type == 'CONTENT_TYPE_NAME') {
    dsm($variables);
+   dsm(drupal_get_path('module', 'gkspenden'));
    $path = drupal_get_path('module', 'gkspenden');
-   dsm($path);
    drupal_add_js($path.'/injections.js', 'module', 'header');
 }
