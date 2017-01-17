@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
          var value = this.value;
          var Nachname = document.getElementById('edit-field-profil-nachname-0-value').value;
          var klausel = '';
-         if (anreden[value]!===undefined) {
+         if (anreden[value]!==undefined) {
             klausel = anreden[value];
          }
          else {
