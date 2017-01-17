@@ -12,15 +12,10 @@ document.addEventListener("DOMContentLoaded", function() {
          var value = this.value;
          var Nachname = document.getElementById('edit-field-profil-nachname-0-value').value;
          var klausel = '';
-         if (anreden[value]!==undefined) {
-            klausel = anreden[value];
-         }
-         else {
-            klausel = anreden.default;
-         }
-         klausel = klausel.replace(/\%Nachname/g, Nachname);
+         klausel = (anreden[value]===undefined) ? anreden.default : anreden[value];
+         klausel = klausel.replace(/\%Nachname/g, Nachname!==''?Nachname:'%nachname%');
          var fAnrede = document.getElementById('edit-field-profil-briefanredespez-0-value');
-         if (fAnrede.value==='') fAnrede.value = klausel;
+         fAnrede.value = klausel;
       };
    })();
 });
